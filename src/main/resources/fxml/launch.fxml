@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.Launch"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LaunchController">
+   <children>
+      <Button layoutX="327.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="58.0" prefWidth="147.0" text="Start Game" />
+      <Button layoutX="589.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="33.0" prefWidth="179.0" text="Show Me The Rules" />
+      <Button layoutX="612.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#showRankings" prefHeight="33.0" prefWidth="156.0" text="Show Me Rankings" />
+      <TextField layoutX="140.0" layoutY="269.0" promptText="Player1. . . " />
+      <TextField layoutX="474.0" layoutY="269.0" promptText="Player2. . ." />
+      <Label layoutX="271.0" layoutY="99.0" prefHeight="83.0" prefWidth="260.0" text="Welcome!" textAlignment="CENTER">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Label>
+      <Label layoutX="301.0" layoutY="182.0" text="Please enter some nicknames!" />
+   </children>
 </AnchorPane>

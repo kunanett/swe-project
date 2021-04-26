@@ -11,24 +11,25 @@ import java.util.List;
 public interface PlayerDao {
 
     @SqlUpdate("""
-        CREATE TABLE rankings (
-                        nickname VARCHAR NOT NULL PRIMARY KEY ,
-                        points INTEGER NOT NULL,
-                        best_rank INTEGER NOT NULL 
-                    )
-        """
+            CREATE TABLE IF NOT EXISTS rankings (
+                            nickname VARCHAR NOT NULL PRIMARY KEY ,
+                            points INTEGER NOT NULL,
+                            best_rank INTEGER NOT NULL 
+                        )
+            """
     )
     void createTable();
 
     @SqlUpdate("""
-               insert into rankings (nickname, points, best_rank) 
-               values (:nickname, :points, :points)
-               """)
+            insert into rankings (nickname, points, best_rank) 
+            values (:nickname, :points, :points)
+            """)
     void insertPlayer(@BindBean Player player);
 
     @SqlQuery("""
-              select * from rankings
-              order by points desc
-              """)
+            select * from rankings
+            order by points desc
+            """)
+    @RegisterBeanMapper(Player.class)
     List<Player> listRankings();
 }

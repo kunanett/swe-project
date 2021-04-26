@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RankingsController">
+   <children>
+      <Button layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="101.0" text="Go Back" />
+      <TableView layoutX="25.0" layoutY="100.0" prefHeight="388.0" prefWidth="757.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Rank" />
+          <TableColumn prefWidth="334.0" text="Player" />
+            <TableColumn prefWidth="181.0" text="Points" />
+            <TableColumn prefWidth="166.0" text="Best Rank" />
+        </columns>
+      </TableView>
+      <Label layoutX="315.0" layoutY="27.0" text="Rankings">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
