@@ -7,11 +7,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LaunchController">
    <children>
-      <Button layoutX="327.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="58.0" prefWidth="147.0" text="Start Game" />
-      <Button layoutX="589.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="33.0" prefWidth="179.0" text="Show Me The Rules" />
-      <Button layoutX="612.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#showRankings" prefHeight="33.0" prefWidth="156.0" text="Show Me Rankings" />
-      <TextField layoutX="140.0" layoutY="269.0" promptText="Player1. . . " />
-      <TextField layoutX="474.0" layoutY="269.0" promptText="Player2. . ." />
+      <Button focusTraversable="false" layoutX="327.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="58.0" prefWidth="147.0" text="Start Game" />
+      <Button focusTraversable="false" layoutX="589.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="33.0" prefWidth="179.0" text="Show Me The Rules" />
+      <Button focusTraversable="false" layoutX="612.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#showRankings" prefHeight="33.0" prefWidth="156.0" text="Show Me Rankings" />
+      <TextField focusTraversable="false" layoutX="140.0" layoutY="269.0" promptText="Player1. . . " />
+      <TextField focusTraversable="false" layoutX="474.0" layoutY="269.0" promptText="Player2. . ." />
       <Label layoutX="271.0" layoutY="99.0" prefHeight="83.0" prefWidth="260.0" text="Welcome!" textAlignment="CENTER">
          <font>
             <Font size="56.0" />
