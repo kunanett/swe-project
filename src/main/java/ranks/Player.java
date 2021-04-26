@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class Player {
+    public long rownum;
     public String nickname;
     public long points;
     public long bestRank;
