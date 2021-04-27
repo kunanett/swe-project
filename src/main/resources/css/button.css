@@ -1,0 +1,19 @@
+*{
+    -fx-background-color: #E0BFB8;
+    -fx-font-family: 'Courier New', monospace;
+    -fx-font-weight: bold;
+    -fx-text-fill: #673147;
+    -fx-background-radius: 1.5em;
+}
+
+*:hover{
+    -fx-background-color: #FAA0A0;
+}
+
+#start{
+    -fx-font-size: 24px;
+}
+
+#generic{
+    -fx-font-size: 16px;
+}

@@ -5,18 +5,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LaunchController">
+<AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LaunchController">
    <children>
-      <Button focusTraversable="false" layoutX="327.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="58.0" prefWidth="147.0" text="Start Game" />
-      <Button focusTraversable="false" layoutX="589.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="33.0" prefWidth="179.0" text="Show Me The Rules" />
-      <Button focusTraversable="false" layoutX="612.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#showRankings" prefHeight="33.0" prefWidth="156.0" text="Show Me Rankings" />
-      <TextField focusTraversable="false" layoutX="140.0" layoutY="269.0" promptText="Player1. . . " />
-      <TextField focusTraversable="false" layoutX="474.0" layoutY="269.0" promptText="Player2. . ." />
-      <Label layoutX="271.0" layoutY="99.0" prefHeight="83.0" prefWidth="260.0" text="Welcome!" textAlignment="CENTER">
+      <Button id="start" focusTraversable="false" layoutX="312.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="76.0" prefWidth="179.0" stylesheets="@../css/button.css" text="Start Game">
          <font>
-            <Font size="56.0" />
+            <Font size="21.0" />
+         </font></Button>
+      <Button id="info" focusTraversable="false" layoutX="581.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="45.0" prefWidth="187.0" stylesheets="@../css/button.css" text="Show Me The Rules" />
+      <Button id="info" focusTraversable="false" layoutX="581.0" layoutY="462.0" mnemonicParsing="false" onMouseClicked="#showRankings" prefHeight="45.0" prefWidth="187.0" stylesheets="@../css/button.css" text="Show Me Rankings" />
+      <TextField focusTraversable="false" layoutX="167.0" layoutY="269.0" promptText="Player1. . . " />
+      <TextField focusTraversable="false" layoutX="451.0" layoutY="269.0" promptText="Player2. . ." />
+      <Label id="welcome" alignment="CENTER" layoutX="49.0" layoutY="71.0" prefHeight="83.0" prefWidth="706.0" stylesheets="@../css/label.css" text="Welcome" textAlignment="CENTER">
+         <font>
+            <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="301.0" layoutY="182.0" text="Please enter some nicknames!" />
+      <Label id="generic" layoutX="232.0" layoutY="210.0" stylesheets="@../css/label.css" text="Please enter some nicknames!" />
    </children>
 </AnchorPane>

@@ -1,0 +1,8 @@
+#pane{
+    -fx-background-color: #FFF5EE;
+    -fx-border-width: 10px;
+    -fx-border-color: #E0BFB8;;
+    -fx-border-insets: 6, 5;
+    -fx-border-radius: 6, 5;
+}
+

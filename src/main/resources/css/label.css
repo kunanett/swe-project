@@ -1,0 +1,22 @@
+*{
+    -fx-font-family: 'Courier New', monospace;
+    -fx-text-fill: #673147;
+    -fx-background-radius: 2em;
+    -fx-text-alignment: center;
+}
+
+
+#welcome{
+    -fx-font-size: 56px;
+    -fx-background-color: #E0BFB8;
+    -fx-border-width: 2px;
+}
+
+#generic{
+   -fx-font-size: 20px;
+}
+
+#rankings-title{
+    -fx-background-color: #E0BFB8;
+    -fx-font-size: 45px;
+}

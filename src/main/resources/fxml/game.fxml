@@ -6,8 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+<AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
-      <Button focusTraversable="false" layoutX="674.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#showRules" text="Rules" />
+      <Button id="info" focusTraversable="false" layoutX="674.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#showRules" stylesheets="@../css/button.css" text="Rules" />
    </children>
 </AnchorPane>

@@ -7,10 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RankingsController">
+<AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RankingsController">
    <children>
-      <Button focusTraversable="false" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="101.0" text="Go Back" textAlignment="CENTER" />
-      <TableView fx:id="rankingsTable" focusTraversable="false" layoutX="25.0" layoutY="100.0" prefHeight="388.0" prefWidth="757.0">
+      <Button id="generic" focusTraversable="false" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="101.0" stylesheets="@../css/button.css" text="Go Back" textAlignment="CENTER" />
+      <TableView fx:id="rankingsTable" focusTraversable="false" layoutX="26.0" layoutY="112.0" prefHeight="388.0" prefWidth="757.0">
         <columns>
           <TableColumn fx:id="rank" editable="false" prefWidth="75.0" resizable="false" sortable="false" text="Rank" />
           <TableColumn fx:id="nickname" editable="false" prefWidth="334.0" resizable="false" sortable="false" text="Player name" />
@@ -18,7 +18,7 @@
             <TableColumn fx:id="bestRank" editable="false" prefWidth="165.0" resizable="false" sortable="false" text="Best Rank" />
         </columns>
       </TableView>
-      <Label layoutX="315.0" layoutY="27.0" text="Rankings">
+      <Label id="rankings-title" alignment="CENTER" layoutX="59.0" layoutY="30.0" prefHeight="59.0" prefWidth="690.0" stylesheets="@../css/label.css" text="Rankings">
          <font>
             <Font size="43.0" />
          </font>
