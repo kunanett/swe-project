@@ -1,4 +1,8 @@
 package gameLogic;
 
-public class Field {
+public enum Field {
+    EMPTY,
+    UNAVAILABLE,
+    PLAYER1,
+    PLAYER2
 }

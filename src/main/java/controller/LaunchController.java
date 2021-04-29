@@ -2,13 +2,11 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -73,8 +71,7 @@ public class LaunchController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
         Parent root = fxmlLoader.load();
         if (filename.equals("/fxml/game.fxml")){
-            fxmlLoader.<GameController>getController().setPlayer1(player1.getText());
-            fxmlLoader.<GameController>getController().setPlayer2(player2.getText());
+            fxmlLoader.<GameController>getController().setPlayerNames(player1.getText(), player2.getText());
         }
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

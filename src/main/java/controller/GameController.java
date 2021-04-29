@@ -26,12 +26,9 @@ public class GameController {
     @FXML
     GridPane board;
 
-    public void setPlayer1(String nickname){
-        this.player1.setText(nickname);
-    }
-
-    public void setPlayer2(String nickname){
-        this.player2.setText(nickname);
+    public void setPlayerNames(String player1, String player2){
+        this.player1.setText(player1);
+        this.player2.setText(player2);
     }
 
     public void initialize(){
