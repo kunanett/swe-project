@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.jdbi.v3.core.Jdbi;
+import ranks.RankingsManager;
 
 public class App extends Application {
     @Override
@@ -15,5 +15,7 @@ public class App extends Application {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
+
+        RankingsManager.createTable();
     }
 }

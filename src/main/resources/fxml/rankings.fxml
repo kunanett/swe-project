@@ -12,8 +12,8 @@
       <Button id="generic" focusTraversable="false" layoutX="350.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="44.0" prefWidth="101.0" stylesheets="@../css/button.css" text="Go Back" textAlignment="CENTER" />
       <TableView id="tableview" fx:id="rankingsTable" focusTraversable="false" layoutX="26.0" layoutY="112.0" prefHeight="388.0" prefWidth="757.0" stylesheets="@../css/pane.css">
         <columns>
-          <TableColumn id="column" fx:id="rank" editable="false" prefWidth="75.0" resizable="false" sortable="false" text="Rank" />
-          <TableColumn id="column" fx:id="nickname" editable="false" prefWidth="334.0" resizable="false" sortable="false" text="Player name" />
+          <TableColumn id="column" fx:id="rank" editable="false" prefWidth="61.0" resizable="false" sortable="false" text="Rank" />
+          <TableColumn id="column" fx:id="nickname" editable="false" prefWidth="348.0" resizable="false" sortable="false" text="Player name" />
             <TableColumn id="column" fx:id="points" editable="false" prefWidth="181.0" resizable="false" sortable="false" text="Points" />
             <TableColumn id="column" fx:id="bestRank" editable="false" maxWidth="1.7976931348623157E308" prefWidth="160.0" resizable="false" sortable="false" text="Best Rank" />
         </columns>

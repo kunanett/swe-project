@@ -5,7 +5,7 @@
 }
 
 .table-view{
-    -fx-background-color: #FAF9F6;
+    -fx-background-color: transparent;
     -fx-border-width: 2px;
     -fx-border-color: #5F6366;
     -fx-text-fill: #5F6366;
@@ -20,5 +20,13 @@
     -fx-border-width: 1px;
     -fx-pref-height: 35px;
     -fx-font-size: 20;
+}
+
+.table-row-cell{
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #DEEAEC;
 }
 
