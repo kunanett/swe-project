@@ -4,3 +4,21 @@
     -fx-border-color: #99CED3;
 }
 
+.table-view{
+    -fx-background-color: #FAF9F6;
+    -fx-border-width: 2px;
+    -fx-border-color: #5F6366;
+    -fx-text-fill: #5F6366;
+    -fx-font-family: 'Courier New', monospace;
+    -fx-font-size: 18;
+
+}
+
+.table-view .column-header {
+    -fx-background-color: #99CED3;
+    -fx-border-color: #5F6366;
+    -fx-border-width: 1px;
+    -fx-pref-height: 35px;
+    -fx-font-size: 20;
+}
+

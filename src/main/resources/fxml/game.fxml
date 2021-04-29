@@ -9,8 +9,8 @@
 
 <AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
-      <Button id="generic" focusTraversable="false" layoutX="662.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="50.0" prefWidth="113.0" stylesheets="@../css/button.css" text="Rules" />
-      <GridPane id="board" fx:id="board" layoutX="62.0" layoutY="99.0" onMouseClicked="#handleMouseClick" prefHeight="450.0" prefWidth="600.0" stylesheets="@../css/board.css">
+      <Button id="generic" focusTraversable="false" layoutX="662.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="50.0" prefWidth="113.0" stylesheets="@../css/button.css" text="Rules" />
+      <GridPane id="board" fx:id="board" layoutX="62.0" layoutY="99.0" prefHeight="450.0" prefWidth="600.0" stylesheets="@../css/board.css">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -84,5 +84,7 @@
             <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
+      <Label id="player1" fx:id="player1" layoutX="136.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player1" />
+      <Label id="player2" fx:id="player2" layoutX="362.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player2" />
    </children>
 </AnchorPane>

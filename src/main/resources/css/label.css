@@ -25,3 +25,22 @@
     -fx-background-color: #EDB5BF;
     -fx-font-size: 25px;
 }
+
+#player1{
+    -fx-font-size: 20px;
+    -fx-background-color: #EDB5BF;
+    -fx-background-radius: 0.2em;
+}
+
+#player2{
+    -fx-font-size: 20px;
+    -fx-background-color: #99CED3;
+    -fx-background-radius: 0.2em;
+}
+
+#warning{
+    -fx-font-size: 20px;
+    -fx-background-color: #EDB5BF;
+    -fx-background-radius: 0.2em;
+    -fx-text-alignment: center;
+}
