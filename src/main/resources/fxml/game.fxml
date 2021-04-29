@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,6 +9,80 @@
 
 <AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
-      <Button id="info" focusTraversable="false" layoutX="674.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#showRules" stylesheets="@../css/button.css" text="Rules" />
+      <Button id="generic" focusTraversable="false" layoutX="662.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="50.0" prefWidth="113.0" stylesheets="@../css/button.css" text="Rules" />
+      <GridPane id="board" fx:id="board" layoutX="62.0" layoutY="99.0" onMouseClicked="#handleMouseClick" prefHeight="450.0" prefWidth="600.0" stylesheets="@../css/board.css">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <children>
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

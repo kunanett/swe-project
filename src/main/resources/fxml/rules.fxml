@@ -7,14 +7,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="468.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RulesController">
+<AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RulesController">
    <children>
-      <Label layoutX="54.0" layoutY="43.0" prefHeight="51.0" prefWidth="370.0" text="The Rules Of The Game" textAlignment="CENTER">
+      <Label id="rules-title" alignment="CENTER" layoutX="44.0" layoutY="41.0" prefHeight="54.0" prefWidth="391.0" stylesheets="@../css/label.css" text="The Rules Of The Game" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="95.0" prefHeight="267.0" prefWidth="263.0" text="At the start of the game there are two&#10;kings placed on a 6x8 sized board.&#10;Each player controls a piece. &#10;The players take turns moving the &#10;kings by the rules of classical chess.&#10;When a king leaves a field, it cannot&#10;be stepped on again.&#10;The game ends when someone is not&#10;able to move anymore.&#10;The winner is the player who moved&#10;their king last." textAlignment="CENTER" />
-      <Button focusTraversable="false" layoutX="198.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#hideRules" prefHeight="39.0" prefWidth="86.0" text="Thanks!" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="101.0" prefHeight="267.0" prefWidth="365.0" stylesheets="@../css/label.css" text="At the start of the game there are two&#10;kings placed on a 6x8 sized board.&#10;Each player controls a piece. &#10;The players take turns moving the &#10;kings by the rules of classical chess.&#10;When a king leaves a field, it cannot&#10;be stepped on again.&#10;The game ends when someone is not&#10;able to move anymore.&#10;The winner is the player who moved&#10;their king last." textAlignment="CENTER" />
+      <Button focusTraversable="false" layoutX="199.0" layoutY="368.0" mnemonicParsing="false" onMouseClicked="#hideRules" prefHeight="39.0" prefWidth="86.0" stylesheets="@../css/button.css" text="Thanks!" />
    </children>
 </AnchorPane>

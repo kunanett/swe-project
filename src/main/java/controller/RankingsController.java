@@ -17,18 +17,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.core.statement.Slf4JSqlLogger;
-import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import ranks.Player;
-import ranks.PlayerDao;
+import ranks.RankingsManager;
 
 import java.io.IOException;
 import java.util.List;
 
 public class RankingsController {
-
-    private Jdbi jdbi;
 
     @FXML
     private TableView<Player> rankingsTable;
@@ -54,14 +49,11 @@ public class RankingsController {
     }
 
     public void initialize(){
-        this.jdbi = Jdbi.create("jdbc:h2:file:~/testdb");
-        jdbi.setSqlLogger(new Slf4JSqlLogger());
-        jdbi.installPlugin(new SqlObjectPlugin());
         refreshTable();
     }
 
     private void refreshTable(){
-        List<Player> players = jdbi.withExtension(PlayerDao.class, PlayerDao::listRankings);
+        List<Player> players = RankingsManager.getRankings();
 
         rank.setCellFactory(col -> {
             TableCell<Player, Long> indexCell = new TableCell<>();
