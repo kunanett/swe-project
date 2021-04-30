@@ -28,6 +28,10 @@ public class BoardManager {
         player1IsNext = true;
     }
 
+    public boolean isPlayer1Next(){
+        return player1IsNext;
+    }
+
     public void movePiece(int i, int j) {
         try {
             Position pos = new Position(i, j);
@@ -36,12 +40,12 @@ public class BoardManager {
                 board[i][j] = Field.PLAYER1;
                 board[player1Position.row()][player1Position.col()] = Field.UNAVAILABLE;
                 player1Position = pos;
-                player1IsNext = false;
-            } else if (pos.isNeighbour(player2Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
+                player1IsNext = !player1IsNext;
+            } else if (!player1IsNext && pos.isNeighbour(player2Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
                 board[i][j] = Field.PLAYER2;
                 board[player2Position.row()][player2Position.col()] = Field.UNAVAILABLE;
                 player2Position = pos;
-                player1IsNext = true;
+                player1IsNext = !player1IsNext;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -57,6 +61,10 @@ public class BoardManager {
             sb.append('\n');
         }
         return sb.toString();
+    }
+
+    public Field[][] getBoard(){
+        return this.board;
     }
 
     public static void main(String[] args) throws IOException {

@@ -11,27 +11,37 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class RankingsManager {
-    private static final Jdbi jdbi = Jdbi.create("jdbc:h2:file:~/testdb").setSqlLogger(new Slf4JSqlLogger()).installPlugin(new SqlObjectPlugin());
+    private static  Jdbi jdbi;
 
-    public static void createTable(){
+    private static final RankingsManager instance = new RankingsManager();
+
+    private RankingsManager(){
+        jdbi = Jdbi.create("jdbc:h2:file:~/testdb").setSqlLogger(new Slf4JSqlLogger()).installPlugin(new SqlObjectPlugin());
+    }
+
+    public static RankingsManager getInstance(){
+        return instance;
+    }
+
+    public void createTable(){
         jdbi.useExtension(PlayerDao.class, PlayerDao::createTable);
     }
 
-    public static void insertPlayer(Player player){
+    public void insertPlayer(Player player){
         jdbi.useExtension(PlayerDao.class, dao -> dao.insertPlayer(player));
     }
 
-    public static List<Player> getRankings() {
+    public List<Player> getRankings() {
         return jdbi.withExtension(PlayerDao.class, PlayerDao::listRankings);
     }
 
 
-    public static boolean playerExists(String nickname) {
+    public boolean playerExists(String nickname) {
         Optional<Player> player = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
         return player.isPresent();
     }
 
-    public static long getPlayersPoints(String nickname){
+    public long getPlayersPoints(String nickname){
         Optional<Player> p = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
         if (p.isPresent()){
             return p.get().getPoints();
@@ -39,7 +49,7 @@ public class RankingsManager {
         return 0;
     }
 
-    public static long getPlayersBestRank(String nickname){
+    public long getPlayersBestRank(String nickname){
         Optional<Player> p = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
         if (p.isPresent()){
             return p.get().getBestRank();
@@ -47,7 +57,7 @@ public class RankingsManager {
         return 0;
     }
 
-    public static long getPlayersCurrentRank(String nickname){
+    public long getPlayersCurrentRank(String nickname){
         List<Player> ranking = getRankings().stream().sorted(Comparator.comparingLong(Player::getPoints).reversed()).collect(Collectors.toList());
         long i = 1;
         for (Player p : ranking){
@@ -59,7 +69,7 @@ public class RankingsManager {
         return ranking.size() + 1;
     }
 
-    public static void updatePlayer(String nickname, boolean winner){
+    public void updatePlayer(String nickname, boolean winner){
         long addedPoints;
         if (winner){
             addedPoints = 1;
@@ -75,7 +85,7 @@ public class RankingsManager {
         }
     }
 
-    public static void updateRankings(){
+    public void updateRankings(){
         List<Player> players = getRankings();
         for (Player p : players){
             long currentRank = getPlayersCurrentRank(p.getNickname());

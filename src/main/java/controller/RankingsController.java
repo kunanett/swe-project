@@ -53,7 +53,7 @@ public class RankingsController {
     }
 
     private void refreshTable(){
-        List<Player> players = RankingsManager.getRankings();
+        List<Player> players = RankingsManager.getInstance().getRankings();
 
         rank.setCellFactory(col -> {
             TableCell<Player, Long> indexCell = new TableCell<>();

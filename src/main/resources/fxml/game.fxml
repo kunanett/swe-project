@@ -32,57 +32,6 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
-         <children>
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <StackPane id="field" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/board.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         </children>
       </GridPane>
       <Label id="player1" fx:id="player1" layoutX="136.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player1" />
       <Label id="player2" fx:id="player2" layoutX="362.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player2" />
