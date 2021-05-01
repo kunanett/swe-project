@@ -2,6 +2,7 @@ package controller;
 
 import gameLogic.BoardManager;
 import gameLogic.Field;
+import gameLogic.GameState;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.List;
 
 public class GameController {
 
@@ -33,12 +33,12 @@ public class GameController {
 
     private BoardManager game;
 
-    public void setPlayerNames(String player1, String player2){
+    public void setPlayerNames(String player1, String player2) {
         this.player1.setText(player1);
         this.player2.setText(player2);
     }
 
-    public void initialize(){
+    public void initialize() {
         game = new BoardManager();
 
         this.player1.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -62,28 +62,55 @@ public class GameController {
         var col = GridPane.getColumnIndex(field);
         game.movePiece(row, col);
         refreshBoard();
+        checkGameOver(mouseEvent);
     }
 
-    public void refreshBoard(){
+    public void checkGameOver(MouseEvent event) {
+        GameState state = game.getGameState();
+        if (!state.equals(GameState.RUNNING)) {
+            String winner;
+            String loser;
+            if (state.equals(GameState.PLAYER1_WON)) {
+                winner = player1.getText();
+                loser = player2.getText();
+            } else {
+                winner = player2.getText();
+                loser = player1.getText();
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/results.fxml"));
+            Parent root = null;
+            try {
+                root = fxmlLoader.load();
+                fxmlLoader.<ResultsController>getController().setWinner(winner, loser);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void refreshBoard() {
         Field[][] boardRepresentation = game.getBoard();
         ObservableList<Node> fields = board.getChildren();
-        for (var field : fields){
+        for (var field : fields) {
             int row = GridPane.getRowIndex(field);
             int col = GridPane.getColumnIndex(field);
             String style;
-            style = switch(boardRepresentation[row][col]){
+            style = switch (boardRepresentation[row][col]) {
                 case UNAVAILABLE -> """
-                                    -fx-background-color: #5F6366;
-                                    """;
+                        -fx-background-color: #5F6366;
+                        """;
                 case PLAYER1 -> """
-                                -fx-background-color: #EDB5BF;
-                                """;
+                        -fx-background-color: #EDB5BF;
+                        """;
                 case PLAYER2 -> """
-                                -fx-background-color: #99CED3;
-                                """;
+                        -fx-background-color: #99CED3;
+                        """;
                 case EMPTY -> """
-                              -fx-background-color: transparent;
-                              """;
+                        -fx-background-color: transparent;
+                        """;
             };
             field.setStyle(style);
         }

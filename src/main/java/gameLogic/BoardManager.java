@@ -1,8 +1,9 @@
 package gameLogic;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class BoardManager {
 
@@ -11,7 +12,11 @@ public class BoardManager {
     Position player1Position;
     Position player2Position;
 
+    GameState gameState;
+
     public boolean player1IsNext;
+
+    Logger logger = LoggerFactory.getLogger(BoardManager.class);
 
     public BoardManager() {
         board = new Field[6][8];
@@ -26,32 +31,73 @@ public class BoardManager {
         player1Position = new Position(0, 0);
         player2Position = new Position(5, 7);
         player1IsNext = true;
+        gameState = GameState.RUNNING;
+
+        logger.trace("Initializing game board");
     }
 
-    public boolean isPlayer1Next(){
+    public boolean isPlayer1Next() {
         return player1IsNext;
     }
 
-    public void movePiece(int i, int j) {
-        try {
-            Position pos = new Position(i, j);
+    public GameState getGameState(){
+        return this.gameState;
+    }
 
-            if (player1IsNext && pos.isNeighbour(player1Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
-                board[i][j] = Field.PLAYER1;
-                board[player1Position.row()][player1Position.col()] = Field.UNAVAILABLE;
-                player1Position = pos;
-                player1IsNext = !player1IsNext;
-            } else if (!player1IsNext && pos.isNeighbour(player2Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
-                board[i][j] = Field.PLAYER2;
-                board[player2Position.row()][player2Position.col()] = Field.UNAVAILABLE;
-                player2Position = pos;
-                player1IsNext = !player1IsNext;
+    public void movePiece(int i, int j) {
+        if (gameState.equals(GameState.RUNNING)) {
+            checkIfGameIsOver();
+            try {
+                Position pos = new Position(i, j);
+
+                if (player1IsNext && pos.isNeighbour(player1Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
+                    board[i][j] = Field.PLAYER1;
+                    board[player1Position.row()][player1Position.col()] = Field.UNAVAILABLE;
+                    player1Position = pos;
+                    player1IsNext = !player1IsNext;
+                    logger.trace("Player 1 moved");
+                } else if (!player1IsNext && pos.isNeighbour(player2Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
+                    board[i][j] = Field.PLAYER2;
+                    board[player2Position.row()][player2Position.col()] = Field.UNAVAILABLE;
+                    player2Position = pos;
+                    player1IsNext = !player1IsNext;
+                    logger.trace("Player 2 moved");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
     }
 
+    public void checkIfGameIsOver() {
+        List<Position> neighbours = player1Position.getNeighbours();
+        System.out.println(neighbours.toString());
+        boolean gameIsOver = true;
+        for (Position neighbour : neighbours) {
+            if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {
+                gameIsOver = false;
+            }
+        }
+        if (gameIsOver) {
+            gameState = GameState.PLAYER2_WON;
+            logger.trace("Game Over - Player 2 won");
+        } else {
+            neighbours = player2Position.getNeighbours();
+            gameIsOver = true;
+            for (Position neighbour : neighbours) {
+                if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {
+                    gameIsOver = false;
+                }
+            }
+            if (gameIsOver) {
+                gameState = GameState.PLAYER1_WON;
+                logger.trace("Game Over - Player 2 won");
+            }
+        }
+
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 6; i++) {
@@ -63,17 +109,8 @@ public class BoardManager {
         return sb.toString();
     }
 
-    public Field[][] getBoard(){
+    public Field[][] getBoard() {
         return this.board;
     }
 
-    public static void main(String[] args) throws IOException {
-        BoardManager game = new BoardManager();
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            System.out.println(game.toString());
-            String input = in.readLine();
-            game.movePiece(Integer.parseInt(String.valueOf(input.charAt(0))),Integer.parseInt(String.valueOf(input.charAt(2))));
-        }
-    }
 }

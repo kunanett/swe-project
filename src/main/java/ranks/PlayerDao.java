@@ -51,7 +51,7 @@ public interface PlayerDao {
     @SqlUpdate("""
                update rankings
                set points = points + :pointsAdded
-               where nickname = : nickname
+               where nickname = :nickname;
 """)
     void updatePlayersPoints(@Bind("nickname") String nickname, @Bind("pointsAdded") long pointsAdded);
 }

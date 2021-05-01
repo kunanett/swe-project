@@ -13,8 +13,8 @@
          </font></Button>
       <Button id="info" focusTraversable="false" layoutX="581.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="45.0" prefWidth="187.0" stylesheets="@../css/button.css" text="Show Me The Rules" />
       <Button id="info" focusTraversable="false" layoutX="581.0" layoutY="462.0" mnemonicParsing="false" onMouseClicked="#showRankings" prefHeight="45.0" prefWidth="187.0" stylesheets="@../css/button.css" text="Show Me Rankings" />
-      <TextField fx:id="player1" focusTraversable="false" layoutX="182.0" layoutY="279.0" prefHeight="37.0" prefWidth="187.0" promptText="Player1. . . " />
-      <TextField fx:id="player2" focusTraversable="false" layoutX="432.0" layoutY="279.0" prefHeight="37.0" prefWidth="187.0" promptText="Player2. . ." />
+      <TextField id="text-field" fx:id="player1" focusTraversable="false" layoutX="182.0" layoutY="279.0" prefHeight="37.0" prefWidth="187.0" promptText="Player1. . . " stylesheets="@../css/label.css" />
+      <TextField id="text-field" fx:id="player2" focusTraversable="false" layoutX="432.0" layoutY="279.0" prefHeight="37.0" prefWidth="187.0" promptText="Player2. . ." stylesheets="@../css/label.css" />
       <Label id="welcome" alignment="CENTER" layoutX="51.0" layoutY="73.0" prefHeight="83.0" prefWidth="706.0" stylesheets="@../css/label.css" text="Welcome" textAlignment="CENTER">
          <font>
             <Font size="43.0" />
