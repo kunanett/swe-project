@@ -64,13 +64,19 @@ public class RankingsManager {
      * The {@code Player} is being searched by their nickname.
      *
      * @param nickname - a {@code String} containing the {@code Player} object's nickname
-     * @return
+     * @return {@code true} if the {@code Player} exists in the database, {@code false} otherwise
      */
     public boolean playerExists(String nickname) {
         Optional<Player> player = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
         return player.isPresent();
     }
 
+    /**
+     * Retrieves the points of a {@code Player}.
+     *
+     * @param nickname the {@code String} containing the nickname of the {@code Player}
+     * @return the {@code long} value of the {@code Player}'s points or 0 if the player is not in the database
+     */
     public long getPlayersPoints(String nickname){
         Optional<Player> p = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
         if (p.isPresent()){
@@ -79,14 +85,12 @@ public class RankingsManager {
         return 0;
     }
 
-    public long getPlayersBestRank(String nickname){
-        Optional<Player> p = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
-        if (p.isPresent()){
-            return p.get().getBestRank();
-        }
-        return 0;
-    }
-
+    /**
+     * Returns the {@code Player}'s current rank on the leaderboard.
+     *
+     * @param nickname the {@code String} containing the nickname of the {@code Player}
+     * @return the {@code long} value of the current rank of the {@code Player}
+     */
     public long getPlayersCurrentRank(String nickname){
         List<Player> ranking = getRankings().stream().sorted(Comparator.comparingLong(Player::getPoints).reversed()).collect(Collectors.toList());
         long i = 1;
@@ -99,6 +103,14 @@ public class RankingsManager {
         return ranking.size() + 1;
     }
 
+    /**
+     * Updates a {@code Player} in the database.
+     *
+     * If the {@code Player} is new, then it will be inserted in the rankings table, otherwise their points will be updated if they were the winner of a particular match.
+     *
+     * @param nickname the {@code String} containing the nickname of the {@code Player}
+     * @param winner {@code boolean} that is {@code true} if the {@code Player} has won a recent match, {@code false} otherwise
+     */
     public void updatePlayer(String nickname, boolean winner){
         long addedPoints;
         if (winner){
@@ -110,11 +122,16 @@ public class RankingsManager {
                     .points(addedPoints)
                     .bestRank(getRankings().size() + 1)
                     .build());
-        }else{
+        }else if (winner){
              jdbi.useExtension(PlayerDao.class, dao -> dao.updatePlayersPoints(nickname, addedPoints));
         }
     }
 
+    /**
+     * Updates the best rank column in the rankings table.
+     *
+     * If a {@code Player}'s rank is higher than their best rank, then their current rank will become their best rank ever.
+     */
     public void updateRankings(){
         List<Player> players = getRankings();
         for (Player p : players){

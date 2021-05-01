@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+//CHECKSTYLE:OFF
 public class LaunchController {
 
     @FXML

@@ -12,6 +12,7 @@ import ranks.RankingsManager;
 
 import java.io.IOException;
 
+//CHECKSTYLE:OFF
 public class ResultsController {
     @FXML
     Label winner;

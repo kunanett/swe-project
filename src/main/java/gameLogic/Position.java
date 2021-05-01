@@ -80,6 +80,12 @@ public class Position {
         return this.col;
     }
 
+    /**
+     * Returns the {@code String} representation of a {@code Position} object.
+     *
+     * @return the {@code String} representation
+     */
+    @Override
     public String toString(){
         return ("Position(" + row + ", " + col + ")");
     }

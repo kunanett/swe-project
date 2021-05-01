@@ -23,6 +23,7 @@ import ranks.RankingsManager;
 import java.io.IOException;
 import java.util.List;
 
+//CHECKSTYLE:OFF
 public class RankingsController {
 
     @FXML

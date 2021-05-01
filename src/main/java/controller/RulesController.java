@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+// CHECKSTYLE:OFF
 public class RulesController {
 
     @FXML

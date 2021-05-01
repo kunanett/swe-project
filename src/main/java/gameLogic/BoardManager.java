@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * Class that is responsible for the gameplay's logic.
+ */
 public class BoardManager {
 
     private final Field[][] board;
@@ -18,6 +21,9 @@ public class BoardManager {
 
     private final Logger logger = LoggerFactory.getLogger(BoardManager.class);
 
+    /**
+     * Creates a {@code BoardManager} object that is responsible for a single match.
+     */
     public BoardManager() {
         board = new Field[6][8];
         for (int i = 0; i < 6; i++) {
@@ -36,14 +42,34 @@ public class BoardManager {
         logger.trace("Initializing game board");
     }
 
+    /**
+     * Returns the current state of the game.
+     *
+     * @return a {@code GameState}
+     */
     public GameState getGameState(){
         return this.gameState;
     }
 
+    /**
+     * Returns a the two-dimensional {@code array} that represents the board.
+     *
+     * @return a 2D {@code array} of {@code Field} objects
+     */
     public Field[][] getBoard() {
         return this.board;
     }
 
+    /**
+     * Handles the movements of the chess pieces.
+     *
+     * If the game is still running, it checks if any of the players are in losing position, then it handles the move.
+     * If one of the players is next to move, it check whether the players current {@code Position} and the desired new {@code Position} are neighbours and
+     * whether that desired {@code Position} is available to step on. The move happens only when these conditions are met.
+     *
+     * @param i the {@code int} that represents the row-index of the position to be moved to
+     * @param j the {@code int} that represents the column-index of the position to be moved to
+     */
     public void movePiece(int i, int j) {
         if (gameState.equals(GameState.RUNNING)) {
             checkIfGameIsOver();
@@ -69,6 +95,11 @@ public class BoardManager {
         }
     }
 
+    /**
+     * Checks whether one of the players is in losing position.
+     *
+     * Each players current {@code Position}'s neighbours are checked. If none of them are empty, then that player is no longer able to move and loses the game.
+     */
     public void checkIfGameIsOver() {
         List<Position> neighbours = player1Position.getNeighbours();
         System.out.println(neighbours.toString());
@@ -97,6 +128,11 @@ public class BoardManager {
 
     }
 
+    /**
+     * Returns the {@code String} representation of the game's board.
+     *
+     * @return the {@code String} representation of the board
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
