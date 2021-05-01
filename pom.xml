@@ -6,6 +6,7 @@
     <groupId>hu.unideb.inf</groupId>
     <artifactId>swe-project</artifactId>
     <version>1.0</version>
+    <description>A simple game for my software engineering homework project.</description>
     <developers>
         <developer>
             <id>kunanett</id>
@@ -13,6 +14,11 @@
             <email>kunanett07@gmail.com</email>
         </developer>
     </developers>
+    <scm>
+        <url>https://github.com/kunanett/swe-project</url>
+        <connection>scm:git:git://github.com/kunanett/swe-project.git</connection>
+        <developerConnection>scm:git:git@github.com:kunanett/swe-project.git</developerConnection>
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>15</maven.compiler.release>
@@ -137,11 +143,11 @@
                 </execution>
             </executions>
         </plugin>
-        <plugin>
+       <!-- <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.0.0-M3</version>
-        </plugin>
+        </plugin>-->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
@@ -156,5 +162,48 @@
             </configuration>
         </plugin>
     </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.1.2</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>8.42</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M4</version>
+            </plugin>-->
+        </plugins>
+    </reporting>
 </project>

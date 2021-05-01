@@ -97,8 +97,7 @@ public class GameController {
         for (var field : fields) {
             int row = GridPane.getRowIndex(field);
             int col = GridPane.getColumnIndex(field);
-            String style;
-            style = switch (boardRepresentation[row][col]) {
+            String backgroundColor = switch (boardRepresentation[row][col]) {
                 case UNAVAILABLE -> """
                         -fx-background-color: #5F6366;
                         """;
@@ -112,7 +111,7 @@ public class GameController {
                         -fx-background-color: transparent;
                         """;
             };
-            field.setStyle(style);
+            field.setStyle(backgroundColor);
         }
     }
 

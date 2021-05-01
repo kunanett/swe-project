@@ -39,7 +39,7 @@ public class ResultsController {
     private void navigateTo(MouseEvent mouseEvent, String filename) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
-        Parent root = null;
+        Parent root;
         try {
             root = fxmlLoader.load();
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

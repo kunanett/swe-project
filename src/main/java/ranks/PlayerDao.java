@@ -9,6 +9,10 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interface for providing Data Access Object of Player class.
+ * The interface provides SQL queries and updates for managing the game's database.
+ */
 @RegisterBeanMapper(Player.class)
 public interface PlayerDao {
 

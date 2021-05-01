@@ -3,12 +3,18 @@ package ranks;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Slf4JSqlLogger;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Class that manages database operations.
+ * Other classes can access the database only through this class.
+ */
 public class RankingsManager {
     private static  Jdbi jdbi;
 
@@ -18,23 +24,48 @@ public class RankingsManager {
         jdbi = Jdbi.create("jdbc:h2:file:~/testdb").setSqlLogger(new Slf4JSqlLogger()).installPlugin(new SqlObjectPlugin());
     }
 
+    /**
+     * Returns the instance of this class.
+     *
+     * @return the only instance of {@code RankingsManager} class
+     */
     public static RankingsManager getInstance(){
         return instance;
     }
 
+    /**
+     * Creates the rankings table in the database.
+     * The table will not be created if it already exists.
+     */
     public void createTable(){
         jdbi.useExtension(PlayerDao.class, PlayerDao::createTable);
     }
 
+    /**
+     * Inserts a player in the database rankings table.
+     *
+     * @param player a {@code Player} object to be inserted in the database
+     */
     public void insertPlayer(Player player){
         jdbi.useExtension(PlayerDao.class, dao -> dao.insertPlayer(player));
     }
 
+    /**
+     * Returns information about all the {@code Player} objects in the database.
+     *
+     * @return a {@code List} containing all the {@code Player} objects from the database
+     */
     public List<Player> getRankings() {
         return jdbi.withExtension(PlayerDao.class, PlayerDao::listRankings);
     }
 
-
+    /**
+     * Checks if a {@code Player} exists in the database.
+     * The {@code Player} is being searched by their nickname.
+     *
+     * @param nickname - a {@code String} containing the {@code Player} object's nickname
+     * @return
+     */
     public boolean playerExists(String nickname) {
         Optional<Player> player = jdbi.withExtension(PlayerDao.class, dao -> dao.findPlayerByNickname(nickname));
         return player.isPresent();

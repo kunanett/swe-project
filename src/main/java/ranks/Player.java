@@ -5,14 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Class for wrapping information about players.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 public class Player {
-    public long rownum;
-    public String nickname;
-    public long points;
-    public long bestRank;
+    private String nickname;
+    private long points;
+    private long bestRank;
 
 }

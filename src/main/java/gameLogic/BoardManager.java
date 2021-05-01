@@ -7,16 +7,16 @@ import java.util.List;
 
 public class BoardManager {
 
-    public Field[][] board;
+    private final Field[][] board;
 
-    Position player1Position;
-    Position player2Position;
+    private Position player1Position;
+    private Position player2Position;
 
-    GameState gameState;
+    private GameState gameState;
 
-    public boolean player1IsNext;
+    private boolean player1IsNext;
 
-    Logger logger = LoggerFactory.getLogger(BoardManager.class);
+    private final Logger logger = LoggerFactory.getLogger(BoardManager.class);
 
     public BoardManager() {
         board = new Field[6][8];
@@ -36,12 +36,12 @@ public class BoardManager {
         logger.trace("Initializing game board");
     }
 
-    public boolean isPlayer1Next() {
-        return player1IsNext;
-    }
-
     public GameState getGameState(){
         return this.gameState;
+    }
+
+    public Field[][] getBoard() {
+        return this.board;
     }
 
     public void movePiece(int i, int j) {
@@ -91,7 +91,7 @@ public class BoardManager {
             }
             if (gameIsOver) {
                 gameState = GameState.PLAYER1_WON;
-                logger.trace("Game Over - Player 2 won");
+                logger.trace("Game Over - Player 1 won");
             }
         }
 
@@ -108,9 +108,4 @@ public class BoardManager {
         }
         return sb.toString();
     }
-
-    public Field[][] getBoard() {
-        return this.board;
-    }
-
 }
