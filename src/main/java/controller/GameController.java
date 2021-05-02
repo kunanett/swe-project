@@ -103,10 +103,10 @@ public class GameController {
                         -fx-background-color: #5F6366;
                         """;
                 case PLAYER1 -> """
-                        -fx-background-color: #EDB5BF;
+                      -fx-background-image: url("/img/pink.png");
                         """;
                 case PLAYER2 -> """
-                        -fx-background-color: #99CED3;
+                        -fx-background-image: url("/img/blue.png");
                         """;
                 case EMPTY -> """
                         -fx-background-color: transparent;

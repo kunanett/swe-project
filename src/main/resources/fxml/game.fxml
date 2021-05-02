@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -33,7 +34,17 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
-      <Label id="player1" fx:id="player1" layoutX="136.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player1" />
-      <Label id="player2" fx:id="player2" layoutX="362.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player2" />
+      <Label id="player1" fx:id="player1" layoutX="147.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player1" />
+      <Label id="player2" fx:id="player2" layoutX="400.0" layoutY="36.0" prefHeight="36.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player2" />
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="84.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/pink_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="337.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/blue_icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
