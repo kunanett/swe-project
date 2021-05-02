@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Class for wrapping the coordinates of a 2D position.
@@ -40,7 +41,8 @@ public class Position {
      * @return {@code true} if the two {@code Position} objects are neighbours and {@code false} otherwise
      */
     public boolean isNeighbour(Position that){
-        return Math.abs(this.row - that.row) <= 1 && Math.abs(this.col - that.col) <= 1;
+        return Math.abs(this.row - that.row) <= 1 && Math.abs(this.col - that.col) <= 1
+                && !(this.row == that.row() && this.col == that.col());
     }
 
     /**
@@ -58,7 +60,6 @@ public class Position {
                     }
                 }
             }
-
         return result;
     }
 
@@ -78,6 +79,19 @@ public class Position {
      */
     public int col(){
         return this.col;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return row == position.row && col == position.col;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
     }
 
     /**
