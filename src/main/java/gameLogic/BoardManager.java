@@ -12,8 +12,7 @@ public class BoardManager {
 
     private final Field[][] board;
 
-    private Position player1Position;
-    private Position player2Position;
+    private final Position[] playerPositions;
 
     private GameState gameState;
 
@@ -34,8 +33,7 @@ public class BoardManager {
         board[0][0] = Field.PLAYER1;
         board[5][7] = Field.PLAYER2;
 
-        player1Position = new Position(0, 0);
-        player2Position = new Position(5, 7);
+        playerPositions = new Position[]{new Position(0, 0), new Position(5, 7)};
         player1IsNext = true;
         gameState = GameState.RUNNING;
 
@@ -60,6 +58,10 @@ public class BoardManager {
         return this.board;
     }
 
+    public boolean isPlayer1Next(){
+        return player1IsNext;
+    }
+
     /**
      * Handles the movements of the chess pieces.
      *
@@ -75,23 +77,27 @@ public class BoardManager {
             checkIfGameIsOver();
             try {
                 Position pos = new Position(i, j);
-
-                if (player1IsNext && pos.isNeighbour(player1Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
-                    board[i][j] = Field.PLAYER1;
-                    board[player1Position.row()][player1Position.col()] = Field.UNAVAILABLE;
-                    player1Position = pos;
-                    player1IsNext = !player1IsNext;
-                    logger.trace("Player 1 moved");
-                } else if (!player1IsNext && pos.isNeighbour(player2Position) && board[pos.row()][pos.col()].equals(Field.EMPTY)) {
-                    board[i][j] = Field.PLAYER2;
-                    board[player2Position.row()][player2Position.col()] = Field.UNAVAILABLE;
-                    player2Position = pos;
-                    player1IsNext = !player1IsNext;
-                    logger.trace("Player 2 moved");
+                if (player1IsNext) {
+                    movePlayer(pos, Field.PLAYER1);
+                } else {
+                    movePlayer(pos, Field.PLAYER2);
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception e) { logger.trace(e.getMessage());
             }
+        }
+    }
+
+    public void movePlayer(Position destination, Field field){
+        int playerNumber = field.ordinal();
+        Position playerPos = playerPositions[playerNumber];
+
+        if(destination.isNeighbour(playerPositions[playerNumber]) && board[destination.row()][destination.col()].equals(Field.EMPTY)){
+            board[destination.row()][destination.col()] = field;
+            board[playerPos.row()][playerPos.col()] = Field.UNAVAILABLE;
+            playerPositions[playerNumber] = destination;
+            player1IsNext = !player1IsNext;
+            logger.trace(String.format("Player %d moved to %s", playerNumber + 1, destination));
+
         }
     }
 
@@ -101,7 +107,7 @@ public class BoardManager {
      * Each players current {@code Position}'s neighbours are checked. If none of them are empty, then that player is no longer able to move and loses the game.
      */
     public void checkIfGameIsOver() {
-        List<Position> neighbours = player1Position.getNeighbours();
+        List<Position> neighbours = playerPositions[0].getNeighbours();
         System.out.println(neighbours.toString());
         boolean gameIsOver = true;
         for (Position neighbour : neighbours) {
@@ -113,7 +119,7 @@ public class BoardManager {
             gameState = GameState.PLAYER2_WON;
             logger.trace("Game Over - Player 2 won");
         } else {
-            neighbours = player2Position.getNeighbours();
+            neighbours = playerPositions[1].getNeighbours();
             gameIsOver = true;
             for (Position neighbour : neighbours) {
                 if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {

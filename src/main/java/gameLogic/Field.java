@@ -5,16 +5,6 @@ package gameLogic;
  */
 public enum Field {
     /**
-     * The field is empty.
-     */
-    EMPTY,
-
-    /**
-     * The field is empty, but it has been stepped upon once, it is now unavailable.
-     */
-    UNAVAILABLE,
-
-    /**
      * The field is occupied by player 1.
      */
     PLAYER1,
@@ -22,5 +12,15 @@ public enum Field {
     /**
      * The field is occupied by player 2.
      */
-    PLAYER2
+    PLAYER2,
+
+    /**
+     * The field is empty.
+     */
+    EMPTY,
+
+    /**
+     * The field is empty, but it has been stepped upon once, it is now unavailable.
+     */
+    UNAVAILABLE
 }

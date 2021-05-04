@@ -51,12 +51,16 @@ class PositionTest {
     @Test
     void testEquals(){
         assertEquals(position, position);
-        assertEquals(position, new Position(0, 0));
-        assertNotEquals(position, new Position(1, 0));
+        assertEquals(position, new Position(position.row(), position.col()));
+        assertNotEquals(position, new Position(5, 7));
+        assertNotEquals(position, "this is a string");
+        assertNotEquals(position, null);
     }
 
 
     @Test
     void testHashCode() {
+        assertEquals(position.hashCode(), position.hashCode());
+        assertEquals(position.hashCode(), new Position(position.row(), position.col()).hashCode());
     }
 }
