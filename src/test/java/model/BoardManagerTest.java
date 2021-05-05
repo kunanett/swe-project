@@ -10,18 +10,18 @@ class BoardManagerTest {
     BoardManager testGame;
 
     @BeforeEach
-    public void init(){
+    void init(){
         testGame = new BoardManager();
     }
 
-    public void assertBoard(boolean expectedPlayer1IsNext, Position expectedPlayer1Pos, Position expectedPlayer2Pos){
+    void assertBoard(boolean expectedPlayer1IsNext, Position expectedPlayer1Pos, Position expectedPlayer2Pos){
         assertAll(() -> assertEquals(expectedPlayer1IsNext, testGame.getPlayer1IsNext()),
                   () -> assertEquals(expectedPlayer1Pos, testGame.getPlayerPositions()[0]),
                   () -> assertEquals(expectedPlayer2Pos, testGame.getPlayerPositions()[1])
         );
     }
 
-    public void assertField(Field expected, Position actual){
+    void assertField(Field expected, Position actual){
         assertEquals(expected, testGame.getBoard()[actual.row()][actual.col()]);
     }
 

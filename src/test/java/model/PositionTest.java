@@ -12,7 +12,7 @@ class PositionTest {
     Position position;
 
     @BeforeEach
-    public void init(){
+    void init(){
         position = new Position(0, 0);
     }
 
