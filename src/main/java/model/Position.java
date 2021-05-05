@@ -1,7 +1,4 @@
-package gameLogic;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +10,6 @@ import java.util.Objects;
 public class Position {
     private final int row;
     private final int col;
-
-    private final Logger logger = LoggerFactory.getLogger(Position.class);
 
     /**
      * Creates a {@code Position} object.
@@ -29,7 +24,6 @@ public class Position {
         }else{
             this.row = row;
             this.col = col;
-            logger.trace("Position object intialized.");
         }
     }
 

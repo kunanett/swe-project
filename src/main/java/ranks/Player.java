@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * Class for wrapping information about players.
  *
- * The class wraps essential information about players, such as their nickname, accumulated points and best rank that they ever had.
+ * The class wraps essential information about players, such as their nickname, accumulated points and best rank.
  */
 @AllArgsConstructor
 @NoArgsConstructor

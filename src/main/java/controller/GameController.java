@@ -1,8 +1,8 @@
 package controller;
 
-import gameLogic.BoardManager;
-import gameLogic.Field;
-import gameLogic.GameState;
+import model.BoardManager;
+import model.Field;
+import model.GameState;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-//CHECKSTYLE:OFF
 public class GameController {
 
     @FXML
@@ -34,11 +33,7 @@ public class GameController {
 
     private BoardManager game;
 
-    public void setPlayerNames(String player1, String player2) {
-        this.player1.setText(player1);
-        this.player2.setText(player2);
-    }
-
+    @FXML
     public void initialize() {
         game = new BoardManager();
 
@@ -56,8 +51,13 @@ public class GameController {
         refreshBoard();
     }
 
+    public void setPlayerNames(String player1, String player2) {
+        this.player1.setText(player1);
+        this.player2.setText(player2);
+    }
+
     @FXML
-    public void handleMouseClick(MouseEvent mouseEvent) {
+    private void handleMouseClick(MouseEvent mouseEvent) {
         var field = (StackPane) mouseEvent.getSource();
         var row = GridPane.getRowIndex(field);
         var col = GridPane.getColumnIndex(field);
@@ -66,11 +66,10 @@ public class GameController {
         checkGameOver(mouseEvent);
     }
 
-    public void checkGameOver(MouseEvent event) {
+    private void checkGameOver(MouseEvent event) {
         GameState state = game.getGameState();
         if (!state.equals(GameState.RUNNING)) {
-            String winner;
-            String loser;
+            String winner, loser;
             if (state.equals(GameState.PLAYER1_WON)) {
                 winner = player1.getText();
                 loser = player2.getText();
@@ -78,21 +77,26 @@ public class GameController {
                 winner = player2.getText();
                 loser = player1.getText();
             }
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/results.fxml"));
-            Parent root = null;
-            try {
-                root = fxmlLoader.load();
-                fxmlLoader.<ResultsController>getController().setWinner(winner, loser);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            goToResults(winner, loser, event);
+        }
+
+    }
+
+    private void goToResults(String winner, String loser, MouseEvent event){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/results.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+            fxmlLoader.<ResultsController>getController().setWinner(winner, loser);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void refreshBoard() {
+    private void refreshBoard() {
         Field[][] boardRepresentation = game.getBoard();
         ObservableList<Node> fields = board.getChildren();
         for (var field : fields) {
@@ -117,7 +121,7 @@ public class GameController {
     }
 
     @FXML
-    public void showRules(MouseEvent mouseEvent) throws IOException {
+    private void showRules(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rules.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();

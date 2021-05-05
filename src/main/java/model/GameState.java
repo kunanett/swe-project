@@ -1,4 +1,4 @@
-package gameLogic;
+package model;
 
 /**
  * The possible states of the game.

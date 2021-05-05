@@ -1,4 +1,4 @@
-package gameLogic;
+package model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +40,14 @@ public class BoardManager {
         logger.trace("Initializing game board");
     }
 
+    public Position[] getPlayerPositions() {
+        return playerPositions;
+    }
+
+    public boolean getPlayer1IsNext(){
+        return  player1IsNext;
+    }
+
     /**
      * Returns the current state of the game.
      *
@@ -58,10 +66,6 @@ public class BoardManager {
         return this.board;
     }
 
-    public boolean isPlayer1Next(){
-        return player1IsNext;
-    }
-
     /**
      * Handles the movements of the chess pieces.
      *
@@ -73,26 +77,26 @@ public class BoardManager {
      * @param j the {@code int} that represents the column-index of the position to be moved to
      */
     public void movePiece(int i, int j) {
+        checkIfGameIsOver();
         if (gameState.equals(GameState.RUNNING)) {
-            checkIfGameIsOver();
             try {
                 Position pos = new Position(i, j);
                 if (player1IsNext) {
-                    movePlayer(pos, Field.PLAYER1);
+                    performMove(pos, Field.PLAYER1);
                 } else {
-                    movePlayer(pos, Field.PLAYER2);
+                    performMove(pos, Field.PLAYER2);
                 }
-            } catch (Exception e) { logger.trace(e.getMessage());
+            } catch (Exception e) { logger.debug(e.getMessage());
             }
         }
     }
 
-    public void movePlayer(Position destination, Field field){
-        int playerNumber = field.ordinal();
+    private void performMove(Position destination, Field player){
+        int playerNumber = player.ordinal();
         Position playerPos = playerPositions[playerNumber];
 
-        if(destination.isNeighbour(playerPositions[playerNumber]) && board[destination.row()][destination.col()].equals(Field.EMPTY)){
-            board[destination.row()][destination.col()] = field;
+        if(destination.isNeighbour(playerPos) && board[destination.row()][destination.col()].equals(Field.EMPTY)){
+            board[destination.row()][destination.col()] = player;
             board[playerPos.row()][playerPos.col()] = Field.UNAVAILABLE;
             playerPositions[playerNumber] = destination;
             player1IsNext = !player1IsNext;
@@ -102,36 +106,29 @@ public class BoardManager {
     }
 
     /**
-     * Checks whether one of the players is in losing position.
+     * Checks whether any of the players are in losing position.
      *
      * Each players current {@code Position}'s neighbours are checked. If none of them are empty, then that player is no longer able to move and loses the game.
      */
     public void checkIfGameIsOver() {
-        List<Position> neighbours = playerPositions[0].getNeighbours();
-        System.out.println(neighbours.toString());
-        boolean gameIsOver = true;
-        for (Position neighbour : neighbours) {
-            if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {
-                gameIsOver = false;
-            }
-        }
-        if (gameIsOver) {
+        if (cannotMove(Field.PLAYER1)) {
             gameState = GameState.PLAYER2_WON;
             logger.trace("Game Over - Player 2 won");
-        } else {
-            neighbours = playerPositions[1].getNeighbours();
-            gameIsOver = true;
-            for (Position neighbour : neighbours) {
-                if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {
-                    gameIsOver = false;
-                }
-            }
-            if (gameIsOver) {
+        } else if (cannotMove(Field.PLAYER2)) {
                 gameState = GameState.PLAYER1_WON;
                 logger.trace("Game Over - Player 1 won");
             }
         }
 
+    private boolean cannotMove(Field player){
+        List<Position> neighbours = playerPositions[player.ordinal()].getNeighbours();
+        boolean cannotMove = true;
+        for (Position neighbour : neighbours) {
+            if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {
+                cannotMove = false;
+            }
+        }
+        return cannotMove;
     }
 
     /**

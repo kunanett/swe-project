@@ -1,4 +1,4 @@
-package gameLogic;
+package model;
 
 /**
  * The possible states of an individual field on the game's board.
@@ -20,7 +20,7 @@ public enum Field {
     EMPTY,
 
     /**
-     * The field is empty, but it has been stepped upon once, it is now unavailable.
+     * The field is empty, but it has been stepped upon once, it is now unavailable to be stepped on again.
      */
     UNAVAILABLE
 }

@@ -1,4 +1,4 @@
-package gameLogic;
+package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,25 +36,18 @@ class PositionTest {
 
     @Test
     void constructorShouldThrowIllegalArgumentException(){
-        boolean thrown = false;
-        try{
-            Position pos = new Position(-1, 0);
-        }catch(IllegalArgumentException e){
-            if (e.getMessage().equals("No such position on the board")){
-                thrown = true;
-            }
-        }
-        assertTrue(thrown);
+        assertThrows(IllegalArgumentException.class, () -> new Position(-1, 1));
+        assertThrows(IllegalArgumentException.class, () -> new Position(0, 9));
 
     }
 
     @Test
     void testEquals(){
-        assertEquals(position, position);
-        assertEquals(position, new Position(position.row(), position.col()));
-        assertNotEquals(position, new Position(5, 7));
-        assertNotEquals(position, "this is a string");
-        assertNotEquals(position, null);
+        assertTrue(position.equals(position));
+        assertTrue(position.equals(new Position(position.row(), position.col())));
+        assertFalse(position.equals(new Position(5, 7)));
+        assertFalse(position.equals("this is a string"));
+        assertFalse(position.equals(null));
     }
 
 
