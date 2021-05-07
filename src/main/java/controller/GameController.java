@@ -87,7 +87,7 @@ public class GameController {
         Parent root = null;
         try {
             root = fxmlLoader.load();
-            fxmlLoader.<ResultsController>getController().setWinner(winner, loser);
+            fxmlLoader.<ResultsController>getController().setResults(winner, loser);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

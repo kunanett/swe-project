@@ -30,6 +30,11 @@ public interface PlayerDao {
     )
     void createTable();
 
+    @SqlUpdate("""
+            drop table rankings
+""")
+    void deleteTable();
+
     /**
      * Maps to an {@code Sql Query} that inserts a {@code Player} object into the database.
      *

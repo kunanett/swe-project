@@ -12,27 +12,28 @@ import ranks.RankingsManager;
 
 import java.io.IOException;
 
-//CHECKSTYLE:OFF
 public class ResultsController {
     @FXML
     Label winner;
 
-    public void setWinner(String winnerNickname, String loserNickname) {
+    public void setResults(String winnerNickname, String loserNickname) {
         this.winner.setText(winnerNickname);
-        saveWinner(winnerNickname, loserNickname);
+        saveResults(winnerNickname, loserNickname);
     }
 
-    public void saveWinner(String winnerNickname, String loserNickname) {
+    private void saveResults(String winnerNickname, String loserNickname) {
         RankingsManager rankingsManager = RankingsManager.getInstance();
         rankingsManager.updatePlayer(winnerNickname, true);
         rankingsManager.updatePlayer(loserNickname, false);
         rankingsManager.updateRankings();
     }
 
+    @FXML
     public void newGameClicked(MouseEvent mouseEvent) {
         navigateTo(mouseEvent, "/fxml/launch.fxml");
     }
 
+    @FXML
     public void showRankingsClicked(MouseEvent mouseEvent) {
         navigateTo(mouseEvent, "/fxml/rankings.fxml");
     }
