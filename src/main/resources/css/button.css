@@ -12,13 +12,23 @@
 
 #start{
     -fx-font-size: 24px;
-    -fx-background-color: #99CED3;
+    -fx-background-color: #EDB5BF;
+
 }
 
 #start:hover{
-    -fx-background-color: #EDB5BF;
+    -fx-background-color: #99CED3;
 }
 
 #generic{
     -fx-font-size: 18px;
+}
+
+#quit{
+    -fx-font-size: 24px;
+    -fx-background-color: #EDB5BF;
+}
+
+#quit:hover{
+    -fx-background-color: #99CED3;
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,7 +14,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-//CHECKSTYLE:OFF
 public class LaunchController {
 
     @FXML
@@ -78,5 +78,10 @@ public class LaunchController {
         stage.setScene(new Scene(root));
         stage.show();
 
+    }
+
+    @FXML
+    void onQuit(){
+        Platform.exit();
     }
 }

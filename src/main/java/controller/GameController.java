@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.scene.control.Button;
 import model.BoardManager;
 import model.Field;
 import model.GameState;
@@ -34,6 +36,9 @@ public class GameController {
     private BoardManager game;
 
     @FXML
+    Button giveUpButton;
+
+    @FXML
     public void initialize() {
         game = new BoardManager();
 
@@ -63,6 +68,12 @@ public class GameController {
         var col = GridPane.getColumnIndex(field);
         game.movePiece(row, col);
         refreshBoard();
+        checkGameOver(mouseEvent);
+    }
+
+    @FXML
+    public void giveUpPressed(MouseEvent mouseEvent) {
+        game.giveUp();
         checkGameOver(mouseEvent);
     }
 
@@ -118,6 +129,12 @@ public class GameController {
             };
             field.setStyle(backgroundColor);
         }
+
+        if (game.getPlayer1IsNext()){
+            giveUpButton.setStyle("-fx-background-color: #EDB5BF;");
+        }else{
+            giveUpButton.setStyle("-fx-background-color: #99CED3");
+        }
     }
 
     @FXML
@@ -132,4 +149,5 @@ public class GameController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
+
 }

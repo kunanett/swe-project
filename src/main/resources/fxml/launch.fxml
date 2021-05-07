@@ -7,7 +7,7 @@
 
 <AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LaunchController">
    <children>
-      <Button id="start" focusTraversable="false" layoutX="314.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="76.0" prefWidth="179.0" stylesheets="@../css/button.css" text="Start Game">
+      <Button id="start" focusTraversable="false" layoutX="311.0" layoutY="399.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="63.0" prefWidth="187.0" stylesheets="@../css/button.css" text="Start Game">
          <font>
             <Font size="21.0" />
          </font></Button>
@@ -22,5 +22,6 @@
       </Label>
       <Label id="generic" layoutX="234.0" layoutY="215.0" stylesheets="@../css/label.css" text="Please enter some nicknames!" />
       <Label id="warning" fx:id="prompt" alignment="BASELINE_CENTER" layoutX="136.0" layoutY="341.0" prefHeight="31.0" prefWidth="536.0" stylesheets="@../css/label.css" text="Warning  " textAlignment="CENTER" />
+      <Button id="quit" layoutX="355.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#onQuit" stylesheets="@../css/button.css" text="Quit" />
    </children>
 </AnchorPane>

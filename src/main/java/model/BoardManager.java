@@ -131,6 +131,14 @@ public class BoardManager {
         return cannotMove;
     }
 
+    public void giveUp(){
+        if (player1IsNext){
+            gameState = GameState.PLAYER2_WON;
+        }else{
+            gameState = GameState.PLAYER1_WON;
+        }
+    }
+
     /**
      * Returns the {@code String} representation of the game's board.
      *

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -50,6 +51,10 @@ public class ResultsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @FXML
+    void onQuit(){
+        Platform.exit();
     }
 }

@@ -6,7 +6,7 @@
     <groupId>hu.unideb.inf</groupId>
     <artifactId>swe-project</artifactId>
     <version>1.0</version>
-    <description>A simple game for my software engineering homework project.</description>
+    <description>A simple JavaFX game for my software engineering homework project.</description>
     <developers>
         <developer>
             <id>kunanett</id>
@@ -210,7 +210,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>src/main/resources/checkstyle.xml</configLocation>
                 </configuration>
             </plugin>
             <plugin>
