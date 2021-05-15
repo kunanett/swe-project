@@ -1,4 +1,4 @@
-package ranks;
+package results;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package ranks;
+package results;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;

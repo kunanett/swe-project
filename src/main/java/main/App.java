@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import model.BoardManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ranks.RankingsManager;
+import results.RankingsManager;
 
 public class App extends Application {
     private final Logger logger = LoggerFactory.getLogger(BoardManager.class);

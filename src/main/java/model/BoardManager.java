@@ -10,13 +10,22 @@ import java.util.List;
  */
 public class BoardManager {
 
+    public enum NextPlayer{
+        PLAYER1,
+        PLAYER2;
+
+        public NextPlayer next(){
+            return NextPlayer.values()[(this.ordinal() + 1) % 2];
+        }
+    }
+
     private final Field[][] board;
 
     private final Position[] playerPositions;
 
     private GameState gameState;
 
-    private boolean player1IsNext;
+    private NextPlayer nextPlayer;
 
     private final Logger logger = LoggerFactory.getLogger(BoardManager.class);
 
@@ -34,7 +43,7 @@ public class BoardManager {
         board[5][7] = Field.PLAYER2;
 
         playerPositions = new Position[]{new Position(0, 0), new Position(5, 7)};
-        player1IsNext = true;
+        nextPlayer = NextPlayer.PLAYER1;
         gameState = GameState.RUNNING;
 
         logger.trace("Initializing game board");
@@ -44,8 +53,8 @@ public class BoardManager {
         return playerPositions;
     }
 
-    public boolean getPlayer1IsNext(){
-        return  player1IsNext;
+    public NextPlayer getNextPlayer(){
+        return  nextPlayer;
     }
 
     /**
@@ -81,7 +90,7 @@ public class BoardManager {
         if (gameState.equals(GameState.RUNNING)) {
             try {
                 Position pos = new Position(i, j);
-                if (player1IsNext) {
+                if (nextPlayer == NextPlayer.PLAYER1) {
                     performMove(pos, Field.PLAYER1);
                 } else {
                     performMove(pos, Field.PLAYER2);
@@ -99,7 +108,7 @@ public class BoardManager {
             board[destination.row()][destination.col()] = player;
             board[playerPos.row()][playerPos.col()] = Field.UNAVAILABLE;
             playerPositions[playerNumber] = destination;
-            player1IsNext = !player1IsNext;
+            nextPlayer = nextPlayer.next();
             logger.trace(String.format("Player %d moved to %s", playerNumber + 1, destination));
 
         }
@@ -131,8 +140,11 @@ public class BoardManager {
         return cannotMove;
     }
 
+    /**
+     * If either of the players give up the game, this method sets the {@code gameState} to the corresponding state.
+     */
     public void giveUp(){
-        if (player1IsNext){
+        if (nextPlayer == NextPlayer.PLAYER1){
             gameState = GameState.PLAYER2_WON;
         }else{
             gameState = GameState.PLAYER1_WON;

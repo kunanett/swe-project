@@ -9,10 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.BoardManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ranks.RankingsManager;
+import results.RankingsManager;
 
 import java.io.IOException;
 

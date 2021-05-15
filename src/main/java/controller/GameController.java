@@ -102,7 +102,7 @@ public class GameController {
     private void goToResults(String winner, String loser, MouseEvent event){
         logger.info("Showing game results");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/results.fxml"));
-        Parent root = null;
+        Parent root;
         try {
             root = fxmlLoader.load();
             fxmlLoader.<ResultsController>getController().setResults(winner, loser);
@@ -138,7 +138,7 @@ public class GameController {
             field.setStyle(backgroundColor);
         }
 
-        if (game.getPlayer1IsNext()){
+        if (game.getNextPlayer() == BoardManager.NextPlayer.PLAYER1){
             giveUpButton.setStyle("-fx-background-color: #EDB5BF;");
         }else{
             giveUpButton.setStyle("-fx-background-color: #99CED3");

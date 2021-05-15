@@ -1,4 +1,4 @@
-package ranks;
+package results;
 
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Slf4JSqlLogger;
