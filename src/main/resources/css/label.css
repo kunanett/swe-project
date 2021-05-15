@@ -30,18 +30,20 @@
 #player1{
     -fx-font-size: 20px;
     -fx-background-color: #EDB5BF;
-    -fx-background-radius: 0.2em;
+    -fx-background-radius: 1em;
+    -fx-text-alignment: center;
 }
 
 #player2{
     -fx-font-size: 20px;
     -fx-background-color: #99CED3;
-    -fx-background-radius: 0.2em;
+    -fx-background-radius: 1em;
+    -fx-text-alignment: center;
 }
 
 #warning{
     -fx-font-size: 20px;
-    -fx-background-color: #EDB5BF;
+    -fx-background-color: #99CED3;
     -fx-background-radius: 0.2em;
     -fx-text-alignment: center;
 }
