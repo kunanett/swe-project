@@ -11,6 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.BoardManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -25,17 +28,22 @@ public class LaunchController {
     @FXML
     public Label prompt;
 
+    private final Logger logger = LoggerFactory.getLogger(LaunchController.class);
+
     public void initialize(){
+        logger.info("Initializing Launch scene");
         prompt.setVisible(false);
     }
 
     public void setPrompt(String message){
         prompt.setText(message);
         prompt.setVisible(true);
+        logger.info(message);
     }
 
     @FXML
     public void startGame(MouseEvent mouseEvent) throws IOException {
+        logger.info("Clicked on Start Game Button");
         if (player1.getText().isEmpty() || player2.getText().isEmpty()) {
             setPrompt("Nickname missing!");
         }else if(player1.getText().length() > 10){
@@ -51,6 +59,7 @@ public class LaunchController {
 
     @FXML
     public void showRules(MouseEvent mouseEvent) throws IOException {
+        logger.info("Clicked on show Rules button");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rules.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
@@ -64,6 +73,7 @@ public class LaunchController {
 
     @FXML
     public void showRankings(MouseEvent mouseEvent) throws IOException {
+        logger.info("Clicked on Rankings button");
         navigateTo(mouseEvent, "/fxml/rankings.fxml");
     }
 
@@ -82,6 +92,7 @@ public class LaunchController {
 
     @FXML
     void onQuit(){
+        logger.info("Clicked on Quit button");
         Platform.exit();
     }
 }

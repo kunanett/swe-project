@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.BoardManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ranks.RankingsManager;
 
 import java.io.IOException;
@@ -17,12 +20,15 @@ public class ResultsController {
     @FXML
     Label winner;
 
+    private final Logger logger = LoggerFactory.getLogger(ResultsController.class);
+
     public void setResults(String winnerNickname, String loserNickname) {
         this.winner.setText(winnerNickname);
         saveResults(winnerNickname, loserNickname);
     }
 
     private void saveResults(String winnerNickname, String loserNickname) {
+        logger.info("Saving results to database");
         RankingsManager rankingsManager = RankingsManager.getInstance();
         rankingsManager.updatePlayer(winnerNickname, true);
         rankingsManager.updatePlayer(loserNickname, false);
@@ -31,11 +37,13 @@ public class ResultsController {
 
     @FXML
     public void newGameClicked(MouseEvent mouseEvent) {
+        logger.info("Clicked on New Game button");
         navigateTo(mouseEvent, "/fxml/launch.fxml");
     }
 
     @FXML
     public void showRankingsClicked(MouseEvent mouseEvent) {
+        logger.info("Clicked on Rankings button");
         navigateTo(mouseEvent, "/fxml/rankings.fxml");
     }
 
@@ -55,6 +63,7 @@ public class ResultsController {
 
     @FXML
     void onQuit(){
+        logger.info("Clicked on Quit button");
         Platform.exit();
     }
 }

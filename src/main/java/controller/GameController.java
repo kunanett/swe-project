@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
 import model.BoardManager;
 import model.Field;
@@ -19,6 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -38,8 +39,11 @@ public class GameController {
     @FXML
     Button giveUpButton;
 
+    private final Logger logger = LoggerFactory.getLogger(GameController.class);
+
     @FXML
     public void initialize() {
+        logger.info("Initializing board on GUI");
         game = new BoardManager();
 
         this.player1.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -67,12 +71,14 @@ public class GameController {
         var row = GridPane.getRowIndex(field);
         var col = GridPane.getColumnIndex(field);
         game.movePiece(row, col);
+        logger.info("Click on board, position: ({}, {})", row, col);
         refreshBoard();
         checkGameOver(mouseEvent);
     }
 
     @FXML
     public void giveUpPressed(MouseEvent mouseEvent) {
+        logger.info("Clicked on give up button");
         game.giveUp();
         checkGameOver(mouseEvent);
     }
@@ -94,6 +100,7 @@ public class GameController {
     }
 
     private void goToResults(String winner, String loser, MouseEvent event){
+        logger.info("Showing game results");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/results.fxml"));
         Parent root = null;
         try {
@@ -108,6 +115,7 @@ public class GameController {
     }
 
     private void refreshBoard() {
+        logger.info("Refreshing the board on the UI");
         Field[][] boardRepresentation = game.getBoard();
         ObservableList<Node> fields = board.getChildren();
         for (var field : fields) {
@@ -139,6 +147,7 @@ public class GameController {
 
     @FXML
     private void showRules(MouseEvent mouseEvent) throws IOException {
+        logger.info("Clicked on Rules button");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rules.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();

@@ -17,13 +17,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.BoardManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ranks.Player;
 import ranks.RankingsManager;
 
 import java.io.IOException;
 import java.util.List;
 
-//CHECKSTYLE:OFF
 public class RankingsController {
 
     @FXML
@@ -41,7 +43,10 @@ public class RankingsController {
     @FXML
     private TableColumn<Player, Long> bestRank;
 
+    private final Logger logger = LoggerFactory.getLogger(RankingsController.class);
+
     public void goBack(MouseEvent mouseEvent) throws IOException {
+        logger.info("Clicked on Go Back button in rankings scene");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/launch.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -54,6 +59,7 @@ public class RankingsController {
     }
 
     private void refreshTable(){
+        logger.info("Refreshing rankings scene");
         List<Player> players = RankingsManager.getInstance().getRankings();
 
         rank.setCellFactory(col -> {
