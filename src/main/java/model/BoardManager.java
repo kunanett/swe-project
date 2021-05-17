@@ -108,7 +108,7 @@ public class BoardManager {
                     performMove(pos, Field.PLAYER2);
                 }
             } catch (Exception e) {
-                logger.debug(e.getMessage());
+                logger.error(e.getMessage());
             }
         }
     }

@@ -77,7 +77,6 @@ public class LaunchController {
     }
 
     private void navigateTo(MouseEvent mouseEvent, String filename) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
         Parent root = fxmlLoader.load();
         if (filename.equals("/fxml/game.fxml")){
@@ -86,7 +85,6 @@ public class LaunchController {
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
-
     }
 
     @FXML

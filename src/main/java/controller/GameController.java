@@ -59,7 +59,7 @@ public class GameController {
         refreshBoard();
     }
 
-    private void createBoard(){
+    private void createBoard() {
         for (int i = 0; i < board.getRowCount(); i++) {
             for (int j = 0; j < board.getColumnCount(); j++) {
                 var field = new StackPane();
@@ -70,7 +70,7 @@ public class GameController {
         }
     }
 
-    private void setBackgroundImages(){
+    private void setBackgroundImages() {
         unavailable = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/unavailable.png")), null, null, null, null);
         pink = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/pink.png")), null, null, null, null);
         blue = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/blue.png")), null, null, null, null);
@@ -84,8 +84,8 @@ public class GameController {
         this.player2.setPrefWidth(Region.USE_COMPUTED_SIZE);
         this.player1.setText(player1);
         this.player2.setText(player2);
-        this.player1Points.setText(String.format("points:%s",p1));
-        this.player2Points.setText(String.format("points:%s",p2));
+        this.player1Points.setText(String.format("points:%s", p1));
+        this.player2Points.setText(String.format("points:%s", p2));
 
         logger.info("Player information set on game UI");
     }
@@ -118,7 +118,7 @@ public class GameController {
         }
     }
 
-    private void showGameOverAlert(){
+    private void showGameOverAlert() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("The game is over!");
@@ -128,12 +128,12 @@ public class GameController {
         dialogPane.setId("alert");
 
         String buttonStyle = """
-                                    -fx-background-color: #EDB5BF;
-                                    -fx-font-family: 'Courier New', monospace;
-                                    -fx-font-weight: bold;
-                                    -fx-text-fill: #5F6366;
-                                    -fx-background-radius: 1.5em;
-                    """;
+                                -fx-background-color: #EDB5BF;
+                                -fx-font-family: 'Courier New', monospace;
+                                -fx-font-weight: bold;
+                                -fx-text-fill: #5F6366;
+                                -fx-background-radius: 1.5em;
+                """;
 
         ButtonBar buttonBar = (ButtonBar) alert.getDialogPane().lookup(".button-bar");
         buttonBar.getButtons().forEach(button -> button.setStyle(buttonStyle));
@@ -165,7 +165,7 @@ public class GameController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
@@ -208,11 +208,11 @@ public class GameController {
         stage.show();
     }
 
-    private void delay(){
+    private void delay() {
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
