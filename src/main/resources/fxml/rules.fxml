@@ -14,7 +14,7 @@
                 <Font size="35.0" />
             </font>
         </Label>
-        <TextArea editable="false" focusTraversable="false" pickOnBounds="false" prefHeight="243.0" prefWidth="366.0" stylesheets="@../css/label.css" text="At the start of the game there are two&#10;kings placed on a 6x8 sized board.&#10;Each player controls a piece. &#10;The players take turns moving the &#10;kings by the rules of classical chess.&#10;When a king leaves a field, it cannot&#10;be stepped on again.&#10;The game ends when someone is not&#10;able to move anymore.&#10;The winner is the player who moved&#10;their king last." wrapText="true" />
+        <TextArea editable="false" focusTraversable="false" pickOnBounds="false" prefHeight="251.0" prefWidth="366.0" stylesheets="@../css/label.css" text="At the start of the game there are two&#10;kings placed on a 6x8 sized board.&#10;Each player controls a piece. &#10;The players take turns moving the &#10;kings by the rules of classical chess.&#10;When a king leaves a field, it cannot&#10;be stepped on again.&#10;The game ends when one of the players is not&#10;able to move anymore.&#10;The winner is the player who moved&#10;last." wrapText="true" />
         <Button focusTraversable="false" mnemonicParsing="false" onMouseClicked="#hideRules" prefHeight="39.0" prefWidth="86.0" stylesheets="@../css/button.css" text="Thanks!" />
     </children>
 </VBox>
