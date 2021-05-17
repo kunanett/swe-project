@@ -10,29 +10,29 @@ class BoardManagerTest {
     BoardManager testGame;
 
     @BeforeEach
-    void init(){
+    void init() {
         testGame = new BoardManager();
     }
 
-    void assertBoard(BoardManager.NextPlayer expectedNextPlayer, Position expectedPlayer1Pos, Position expectedPlayer2Pos){
+    void assertBoard(BoardManager.NextPlayer expectedNextPlayer, Position expectedPlayer1Pos, Position expectedPlayer2Pos) {
         assertAll(() -> assertEquals(expectedNextPlayer, testGame.getNextPlayer()),
-                  () -> assertEquals(expectedPlayer1Pos, testGame.getPlayerPositions()[0]),
-                  () -> assertEquals(expectedPlayer2Pos, testGame.getPlayerPositions()[1])
+                () -> assertEquals(expectedPlayer1Pos, testGame.getPlayerPositions()[0]),
+                () -> assertEquals(expectedPlayer2Pos, testGame.getPlayerPositions()[1])
         );
     }
 
-    void assertField(Field expected, Position actual){
+    void assertField(Field expected, Position actual) {
         assertEquals(expected, testGame.getBoard()[actual.row()][actual.col()]);
     }
 
     @Test
     void movePiece() {
         //player1 moves to Position(0, 1)
-         testGame.movePiece(0, 1);
-         assertBoard(BoardManager.NextPlayer.PLAYER2, new Position(0, 1), new Position(5, 7));
-         assertField(Field.UNAVAILABLE, new Position(0, 0));
+        testGame.movePiece(0, 1);
+        assertBoard(BoardManager.NextPlayer.PLAYER2, new Position(0, 1), new Position(5, 7));
+        assertField(Field.UNAVAILABLE, new Position(0, 0));
 
-         //player2 moves to Position(4, 7)
+        //player2 moves to Position(4, 7)
         testGame.movePiece(4, 7);
         assertBoard(BoardManager.NextPlayer.PLAYER1, new Position(0, 1), new Position(4, 7));
         assertField(Field.UNAVAILABLE, new Position(5, 7));
@@ -53,7 +53,6 @@ class BoardManagerTest {
         assertBoard(BoardManager.NextPlayer.PLAYER2, new Position(1, 1), new Position(4, 7));
         assertField(Field.PLAYER1, new Position(1, 1));
         assertField(Field.UNAVAILABLE, new Position(0, 1));
-
 
 
     }
@@ -80,7 +79,7 @@ class BoardManagerTest {
     }
 
     @Test
-    void giveUp(){
+    void giveUp() {
         testGame.giveUp();
         assertEquals(GameState.PLAYER2_WON, testGame.getGameState());
 

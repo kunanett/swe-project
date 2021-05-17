@@ -16,6 +16,7 @@ import results.RankingsManager;
 import java.io.IOException;
 
 public class ResultsController {
+
     @FXML
     Label winner;
 
@@ -47,7 +48,6 @@ public class ResultsController {
     }
 
     private void navigateTo(MouseEvent mouseEvent, String filename) {
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
         Parent root;
         try {
@@ -61,7 +61,7 @@ public class ResultsController {
     }
 
     @FXML
-    void onQuit(){
+    void onQuit() {
         logger.info("Clicked on Quit button");
         Platform.exit();
     }

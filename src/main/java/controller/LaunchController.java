@@ -29,12 +29,12 @@ public class LaunchController {
 
     private final Logger logger = LoggerFactory.getLogger(LaunchController.class);
 
-    public void initialize(){
+    public void initialize() {
         logger.info("Initializing Launch scene");
         prompt.setVisible(false);
     }
 
-    public void setPrompt(String message){
+    private void setPrompt(String message) {
         prompt.setText(message);
         prompt.setVisible(true);
         logger.info(message);
@@ -42,23 +42,23 @@ public class LaunchController {
 
     @FXML
     public void startGame(MouseEvent mouseEvent) throws IOException {
-        logger.info("Clicked on Start Game Button");
+        logger.info("Click on Start Game Button");
         if (player1.getText().isEmpty() || player2.getText().isEmpty()) {
             setPrompt("Nickname missing!");
-        }else if(player1.getText().length() > 10){
+        } else if (player1.getText().length() > 10) {
             setPrompt("Player 1 nickname is too long!");
-        }else if(player2.getText().length() > 10){
+        } else if (player2.getText().length() > 10) {
             setPrompt("Player 2 nickname is too long!");
-        }else if(player2.getText().equals(player1.getText())){
+        } else if (player2.getText().equals(player1.getText())) {
             setPrompt("Nicknames must be different!");
-        }else {
+        } else {
             navigateTo(mouseEvent, "/fxml/game.fxml");
         }
     }
 
     @FXML
     public void showRules(MouseEvent mouseEvent) throws IOException {
-        logger.info("Clicked on show Rules button");
+        logger.info("Click on show Rules button");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rules.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
@@ -72,14 +72,14 @@ public class LaunchController {
 
     @FXML
     public void showRankings(MouseEvent mouseEvent) throws IOException {
-        logger.info("Clicked on Rankings button");
+        logger.info("Click on Rankings button");
         navigateTo(mouseEvent, "/fxml/rankings.fxml");
     }
 
     private void navigateTo(MouseEvent mouseEvent, String filename) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
         Parent root = fxmlLoader.load();
-        if (filename.equals("/fxml/game.fxml")){
+        if (filename.equals("/fxml/game.fxml")) {
             fxmlLoader.<GameController>getController().setPlayers(player1.getText(), player2.getText());
         }
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -88,7 +88,7 @@ public class LaunchController {
     }
 
     @FXML
-    void onQuit(){
+    void onQuit() {
         logger.info("Clicked on Quit button");
         Platform.exit();
     }

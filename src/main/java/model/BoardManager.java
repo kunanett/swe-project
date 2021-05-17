@@ -11,7 +11,7 @@ import java.util.List;
 public class BoardManager {
 
     /**
-     * Enum class for representing which player is next to move.
+     * {@code Enum} class for representing which player is next to move.
      */
     public enum NextPlayer {
         /**
@@ -116,14 +116,12 @@ public class BoardManager {
     private void performMove(Position destination, Field player) {
         int playerNumber = player.ordinal();
         Position playerPos = playerPositions[playerNumber];
-
         if (destination.isNeighbour(playerPos) && board[destination.row()][destination.col()].equals(Field.EMPTY)) {
             board[destination.row()][destination.col()] = player;
             board[playerPos.row()][playerPos.col()] = Field.UNAVAILABLE;
             playerPositions[playerNumber] = destination;
             nextPlayer = nextPlayer.next();
             logger.trace(String.format("Player %d moved to %s", playerNumber + 1, destination));
-
         }
     }
 

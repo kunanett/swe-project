@@ -20,7 +20,7 @@ class RankingsManagerTest {
     Jdbi jdbi;
 
     @BeforeEach
-    void init(){
+    void init() {
         rankingsManager = RankingsManager.getTestInstance();
         jdbi = Jdbi.create("jdbc:h2:file:~/test").setSqlLogger(new Slf4JSqlLogger()).installPlugin(new SqlObjectPlugin());
         jdbi.useExtension(PlayerDao.class, PlayerDao::createTable);
@@ -28,17 +28,16 @@ class RankingsManagerTest {
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         jdbi.useExtension(PlayerDao.class, PlayerDao::deleteTable);
     }
 
-    void assertRankings(List<Player> expected, List<Player> actual){
+    void assertRankings(List<Player> expected, List<Player> actual) {
         assertAll(
                 () -> assertTrue(actual.containsAll(expected)),
                 () -> assertTrue(expected.containsAll(actual))
         );
     }
-
 
     @Test
     void insertPlayer() {
@@ -80,7 +79,7 @@ class RankingsManagerTest {
         assertEquals(56, rankingsManager.getPlayersPoints("Anett"));
 
         jdbi.useExtension(PlayerDao.class, dao -> {
-           dao.updatePlayersPoints("Anett", 4);
+            dao.updatePlayersPoints("Anett", 4);
         });
 
         assertEquals(60, rankingsManager.getPlayersPoints("Anett"));

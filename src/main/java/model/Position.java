@@ -13,7 +13,7 @@ import java.util.Objects;
 public record Position(int row, int col) {
     /**
      * Creates a {@code Position} object.
-     * The {@code Position} object will be determined by two {@code int} coordinates. These coordinates must be in the limit of a 6x8 sized board.
+     * The {@code Position} will be determined by two {@code int} coordinates. These coordinates must be in the limit of a 6x8 sized board.
      *
      * @param row the row-index of the position, must be between 0 and 5
      * @param col the column-index of the position, must be between 0 and 7

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * Class that manages database operations.
+ * <p>
  * Other classes can access the database only through this class. The classes only instance can either be the standard instance that manages the application's database, or the test instance which is used during JUnit testing.
  */
 public class RankingsManager {
@@ -23,9 +24,7 @@ public class RankingsManager {
     }
 
     /**
-     * Returns the instance of this class.
-     *
-     * @return the only instance of {@code RankingsManager} class
+     * {@return the instance of {@code RankingsManager} class}
      */
     public static RankingsManager getInstance() {
         instance = new RankingsManager("jdbc:h2:file:~/testdb");
@@ -34,7 +33,7 @@ public class RankingsManager {
 
     /**
      * Returns the instance of this class that is used for JUnit testing.
-     *
+     * <p>
      * This instance accesses a test database.
      *
      * @return the test instance of {@code RankingsManager} class
@@ -125,10 +124,10 @@ public class RankingsManager {
      * @param winner   {@code boolean} that is {@code true} if the {@code Player} has won a recent match, {@code false} otherwise
      */
     public void updatePlayer(String nickname, boolean winner) {
-        long addedPoints;
+        long addedPoints = 0;
         if (winner) {
             addedPoints = 1;
-        } else addedPoints = 0;
+        }
         if (!playerExists(nickname)) {
             insertPlayer(Player.builder()
                     .nickname(nickname)
@@ -136,7 +135,7 @@ public class RankingsManager {
                     .bestRank(getRankings().size() + 1)
                     .build());
         } else if (winner) {
-            jdbi.useExtension(PlayerDao.class, dao -> dao.updatePlayersPoints(nickname, addedPoints));
+            jdbi.useExtension(PlayerDao.class, dao -> dao.updatePlayersPoints(nickname, 1));
         }
     }
 

@@ -2,7 +2,6 @@ package controller;
 
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import model.BoardManager;
 import model.Field;
@@ -126,7 +125,6 @@ public class GameController {
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/css/pane.css").toExternalForm());
         dialogPane.setId("alert");
-
         String buttonStyle = """
                                 -fx-background-color: #EDB5BF;
                                 -fx-font-family: 'Courier New', monospace;
@@ -186,7 +184,6 @@ public class GameController {
 
             ((StackPane) field).backgroundProperty().setValue(new Background(background));
         }
-
         if (game.getNextPlayer() == BoardManager.NextPlayer.PLAYER1) {
             giveUpButton.setStyle("-fx-background-color: #EDB5BF");
         } else {
@@ -196,7 +193,7 @@ public class GameController {
 
     @FXML
     private void showRules(MouseEvent mouseEvent) throws IOException {
-        logger.info("Clicked on Rules button");
+        logger.info("Click on Rules button");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/rules.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();

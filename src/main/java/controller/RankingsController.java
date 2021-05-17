@@ -45,7 +45,7 @@ public class RankingsController {
     private final Logger logger = LoggerFactory.getLogger(RankingsController.class);
 
     public void goBack(MouseEvent mouseEvent) throws IOException {
-        logger.info("Clicked on Go Back button in rankings scene");
+        logger.info("Click on Go Back button in rankings scene");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/launch.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -53,11 +53,12 @@ public class RankingsController {
         stage.show();
     }
 
-    public void initialize(){
+    @FXML
+    public void initialize() {
         refreshTable();
     }
 
-    private void refreshTable(){
+    private void refreshTable() {
         logger.info("Refreshing rankings scene");
         List<Player> players = RankingsManager.getInstance().getRankings();
 
