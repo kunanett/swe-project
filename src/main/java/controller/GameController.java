@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import model.BoardManager;
 import model.Field;
 import model.GameState;
@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -70,8 +69,8 @@ public class GameController {
         var field = (StackPane) mouseEvent.getSource();
         var row = GridPane.getRowIndex(field);
         var col = GridPane.getColumnIndex(field);
-        game.movePiece(row, col);
         logger.info("Click on board, position: ({}, {})", row, col);
+        game.movePiece(row, col);
         refreshBoard();
         checkGameOver(mouseEvent);
     }
@@ -80,26 +79,55 @@ public class GameController {
     public void giveUpPressed(MouseEvent mouseEvent) {
         logger.info("Clicked on give up button");
         game.giveUp();
-        checkGameOver(mouseEvent);
+        gameOver(mouseEvent, game.getGameState());
     }
 
     private void checkGameOver(MouseEvent event) {
-        GameState state = game.getGameState();
-        if (!state.equals(GameState.RUNNING)) {
-            String winner, loser;
-            if (state.equals(GameState.PLAYER1_WON)) {
-                winner = player1.getText();
-                loser = player2.getText();
-            } else {
-                winner = player2.getText();
-                loser = player1.getText();
-            }
-            goToResults(winner, loser, event);
+        game.checkIfGameIsOver();
+        GameState gameState = game.getGameState();
+        if (game.getGameState() != GameState.RUNNING) {
+            showGameOverAlert();
+            delay();
+            gameOver(event, gameState);
         }
-
     }
 
-    private void goToResults(String winner, String loser, MouseEvent event){
+    private void showGameOverAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText("The game is over!");
+        alert.setContentText("Please click OK to continue.");
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/css/pane.css").toExternalForm());
+        dialogPane.setId("alert");
+
+        String buttonStyle = """
+                                    -fx-background-color: #EDB5BF;
+                                    -fx-font-family: 'Courier New', monospace;
+                                    -fx-font-weight: bold;
+                                    -fx-text-fill: #5F6366;
+                                    -fx-background-radius: 1.5em;
+                    """;
+
+        ButtonBar buttonBar = (ButtonBar) alert.getDialogPane().lookup(".button-bar");
+        buttonBar.getButtons().forEach(button -> button.setStyle(buttonStyle));
+        delay();
+        alert.showAndWait();
+    }
+
+    private void gameOver(MouseEvent event, GameState state) {
+        String winner, loser;
+        if (state.equals(GameState.PLAYER1_WON)) {
+            winner = player1.getText();
+            loser = player2.getText();
+        } else {
+            winner = player2.getText();
+            loser = player1.getText();
+        }
+        goToResults(winner, loser, event);
+    }
+
+    private void goToResults(String winner, String loser, MouseEvent event) {
         logger.info("Showing game results");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/results.fxml"));
         Parent root;
@@ -115,7 +143,9 @@ public class GameController {
     }
 
     private void refreshBoard() {
-        logger.info("Refreshing the board on the UI");
+        logger.debug("Refreshing the board on the UI");
+        logger.debug(game.toString());
+
         Field[][] boardRepresentation = game.getBoard();
         ObservableList<Node> fields = board.getChildren();
         for (var field : fields) {
@@ -126,8 +156,8 @@ public class GameController {
                         -fx-background-color: #5F6366;
                         """;
                 case PLAYER1 -> """
-                      -fx-background-image: url("/img/pink.png");
-                        """;
+                        -fx-background-image: url("/img/pink.png");
+                          """;
                 case PLAYER2 -> """
                         -fx-background-image: url("/img/blue.png");
                         """;
@@ -138,9 +168,9 @@ public class GameController {
             field.setStyle(backgroundColor);
         }
 
-        if (game.getNextPlayer() == BoardManager.NextPlayer.PLAYER1){
-            giveUpButton.setStyle("-fx-background-color: #EDB5BF;");
-        }else{
+        if (game.getNextPlayer() == BoardManager.NextPlayer.PLAYER1) {
+            giveUpButton.setStyle("-fx-background-color: #EDB5BF");
+        } else {
             giveUpButton.setStyle("-fx-background-color: #99CED3");
         }
     }
@@ -157,6 +187,14 @@ public class GameController {
         stage.initOwner(((Node) mouseEvent.getSource()).getScene().getWindow());
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
+    }
+
+    private void delay(){
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

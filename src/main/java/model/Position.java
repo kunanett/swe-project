@@ -5,12 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Class for wrapping the coordinates of a 2D position.
+ * Record class for wrapping the coordinates of a 2D position.
  */
-public class Position {
-    private final int row;
-    private final int col;
-
+public record Position(int row, int col) {
     /**
      * Creates a {@code Position} object.
      * The {@code Position} object will be determined by two {@code int} coordinates. These coordinates must be in the limit of a 6x8 sized board.
@@ -21,7 +18,7 @@ public class Position {
     public Position(int row, int col) {
         if (row < 0 || row > 5 || col < 0 || col > 7) {
             throw new IllegalArgumentException("No such position on the board");
-        }else{
+        } else {
             this.row = row;
             this.col = col;
         }
@@ -34,7 +31,7 @@ public class Position {
      * @param that {@code Position} object that might be a neighbour of
      * @return {@code true} if the two {@code Position} objects are neighbours and {@code false} otherwise
      */
-    public boolean isNeighbour(Position that){
+    public boolean isNeighbour(Position that) {
         return Math.abs(this.row - that.row) <= 1 && Math.abs(this.col - that.col) <= 1
                 && !(this.row == that.row() && this.col == that.col());
     }
@@ -44,16 +41,16 @@ public class Position {
      *
      * @return the {@code List} of neighbouring {@code Position} objects
      */
-    public List<Position> getNeighbours(){
+    public List<Position> getNeighbours() {
         List<Position> result = new ArrayList<Position>();
-            for (int i = 0; i<6; i++){
-                for (int j = 0; j<8; j++){
-                    Position pos = new Position(i, j);
-                    if (this.isNeighbour(pos)){
-                        result.add(pos);
-                    }
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 8; j++) {
+                Position pos = new Position(i, j);
+                if (this.isNeighbour(pos)) {
+                    result.add(pos);
                 }
             }
+        }
         return result;
     }
 
@@ -62,7 +59,8 @@ public class Position {
      *
      * @return the row-index of this {@code Position} object
      */
-    public int row(){
+    @Override
+    public int row() {
         return this.row;
     }
 
@@ -71,7 +69,8 @@ public class Position {
      *
      * @return the column-index of this {@code Position} object
      */
-    public int col(){
+    @Override
+    public int col() {
         return this.col;
     }
 
@@ -94,7 +93,7 @@ public class Position {
      * @return the {@code String} representation
      */
     @Override
-    public String toString(){
+    public String toString() {
         return ("Position(" + row + ", " + col + ")");
     }
 }

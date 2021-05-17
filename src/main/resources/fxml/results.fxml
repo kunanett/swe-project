@@ -9,10 +9,14 @@
 <AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ResultsController">
    <children>
       <Label id="welcome" alignment="CENTER" layoutX="66.0" layoutY="100.0" prefHeight="78.0" prefWidth="668.0" stylesheets="@../css/label.css" text="Game Over" />
-      <Label id="generic" layoutX="316.0" layoutY="229.0" stylesheets="@../css/label.css" text="The winner is:" />
-      <Label id="winner" fx:id="winner" alignment="CENTER" layoutX="275.0" layoutY="289.0" prefHeight="53.0" prefWidth="251.0" stylesheets="@../css/label.css" text="winner" />
-      <Button id="generic" layoutX="334.0" layoutY="378.0" mnemonicParsing="false" onMouseClicked="#newGameClicked" prefHeight="53.0" prefWidth="133.0" stylesheets="@../css/button.css" text="New Game" />
-      <Button id="generic" layoutX="308.0" layoutY="442.0" mnemonicParsing="false" onMouseClicked="#showRankingsClicked" prefHeight="53.0" prefWidth="185.0" stylesheets="@../css/button.css" text="Show Rankings" />
-      <Button id="quit" layoutX="355.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onQuit" stylesheets="@../css/button.css" text="Quit" />
+      <VBox alignment="CENTER" layoutX="290.0" layoutY="203.0" prefHeight="372.0" prefWidth="220.0" spacing="20.0">
+         <children>
+            <Label id="generic" stylesheets="@../css/label.css" text="The winner is:" />
+            <Label id="winner" fx:id="winner" alignment="CENTER" prefHeight="53.0" prefWidth="251.0" stylesheets="@../css/label.css" text="winner" />
+            <Button id="generic" mnemonicParsing="false" onMouseClicked="#newGameClicked" prefHeight="53.0" prefWidth="133.0" stylesheets="@../css/button.css" text="New Game" />
+            <Button id="generic" mnemonicParsing="false" onMouseClicked="#showRankingsClicked" prefHeight="53.0" prefWidth="185.0" stylesheets="@../css/button.css" text="Show Rankings" />
+            <Button id="quit" mnemonicParsing="false" onMouseClicked="#onQuit" stylesheets="@../css/button.css" text="Quit" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

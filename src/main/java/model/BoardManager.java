@@ -10,12 +10,15 @@ import java.util.List;
  */
 public class BoardManager {
 
-    public enum NextPlayer{
+    /**
+     * Enum class for representing which player is next to move.
+     */
+    public enum NextPlayer {
         PLAYER1,
         PLAYER2;
 
-        public NextPlayer next(){
-            return NextPlayer.values()[(this.ordinal() + 1) % 2];
+        private NextPlayer next() {
+            return NextPlayer.values()[(this.ordinal() + 1) % NextPlayer.values().length];
         }
     }
 
@@ -33,6 +36,8 @@ public class BoardManager {
      * Creates a {@code BoardManager} object that is responsible for a single match.
      */
     public BoardManager() {
+        logger.trace("Initializing game board");
+
         board = new Field[6][8];
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 8; j++) {
@@ -45,16 +50,14 @@ public class BoardManager {
         playerPositions = new Position[]{new Position(0, 0), new Position(5, 7)};
         nextPlayer = NextPlayer.PLAYER1;
         gameState = GameState.RUNNING;
-
-        logger.trace("Initializing game board");
     }
 
     public Position[] getPlayerPositions() {
         return playerPositions;
     }
 
-    public NextPlayer getNextPlayer(){
-        return  nextPlayer;
+    public NextPlayer getNextPlayer() {
+        return nextPlayer;
     }
 
     /**
@@ -62,7 +65,7 @@ public class BoardManager {
      *
      * @return a {@code GameState}
      */
-    public GameState getGameState(){
+    public GameState getGameState() {
         return this.gameState;
     }
 
@@ -77,7 +80,7 @@ public class BoardManager {
 
     /**
      * Handles the movements of the chess pieces.
-     *
+     * <p>
      * If the game is still running, it checks if any of the players are in losing position, then it handles the move.
      * If one of the players is next to move, it check whether the players current {@code Position} and the desired new {@code Position} are neighbours and
      * whether that desired {@code Position} is available to step on. The move happens only when these conditions are met.
@@ -86,7 +89,6 @@ public class BoardManager {
      * @param j the {@code int} that represents the column-index of the position to be moved to
      */
     public void movePiece(int i, int j) {
-        checkIfGameIsOver();
         if (gameState.equals(GameState.RUNNING)) {
             try {
                 Position pos = new Position(i, j);
@@ -95,16 +97,17 @@ public class BoardManager {
                 } else {
                     performMove(pos, Field.PLAYER2);
                 }
-            } catch (Exception e) { logger.debug(e.getMessage());
+            } catch (Exception e) {
+                logger.debug(e.getMessage());
             }
         }
     }
 
-    private void performMove(Position destination, Field player){
+    private void performMove(Position destination, Field player) {
         int playerNumber = player.ordinal();
         Position playerPos = playerPositions[playerNumber];
 
-        if(destination.isNeighbour(playerPos) && board[destination.row()][destination.col()].equals(Field.EMPTY)){
+        if (destination.isNeighbour(playerPos) && board[destination.row()][destination.col()].equals(Field.EMPTY)) {
             board[destination.row()][destination.col()] = player;
             board[playerPos.row()][playerPos.col()] = Field.UNAVAILABLE;
             playerPositions[playerNumber] = destination;
@@ -116,37 +119,38 @@ public class BoardManager {
 
     /**
      * Checks whether any of the players are in losing position.
-     *
+     * <p>
      * Each players current {@code Position}'s neighbours are checked. If none of them are empty, then that player is no longer able to move and loses the game.
      */
     public void checkIfGameIsOver() {
+        GameState state = GameState.RUNNING;
         if (cannotMove(Field.PLAYER1)) {
-            gameState = GameState.PLAYER2_WON;
+            state = GameState.PLAYER2_WON;
             logger.trace("Game Over - Player 2 won");
         } else if (cannotMove(Field.PLAYER2)) {
-                gameState = GameState.PLAYER1_WON;
-                logger.trace("Game Over - Player 1 won");
-            }
+            state = GameState.PLAYER1_WON;
+            logger.trace("Game Over - Player 1 won");
         }
+        this.gameState = state;
+    }
 
-    private boolean cannotMove(Field player){
+    private boolean cannotMove(Field player) {
         List<Position> neighbours = playerPositions[player.ordinal()].getNeighbours();
-        boolean cannotMove = true;
         for (Position neighbour : neighbours) {
             if (board[neighbour.row()][neighbour.col()].equals(Field.EMPTY)) {
-                cannotMove = false;
+                return false;
             }
         }
-        return cannotMove;
+        return true;
     }
 
     /**
-     * If either of the players give up the game, this method sets the {@code gameState} to the corresponding state.
+     * If either of the players give up the game, this method sets the {@code gameState} attribute to the corresponding {@code GameState}.
      */
-    public void giveUp(){
-        if (nextPlayer == NextPlayer.PLAYER1){
+    public void giveUp() {
+        if (nextPlayer == NextPlayer.PLAYER1) {
             gameState = GameState.PLAYER2_WON;
-        }else{
+        } else {
             gameState = GameState.PLAYER1_WON;
         }
     }
