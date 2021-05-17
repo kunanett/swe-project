@@ -14,8 +14,8 @@ class BoardManagerTest {
         testGame = new BoardManager();
     }
 
-    void assertBoard(BoardManager.NextPlayer expectednextPlayer, Position expectedPlayer1Pos, Position expectedPlayer2Pos){
-        assertAll(() -> assertEquals(expectednextPlayer, testGame.getNextPlayer()),
+    void assertBoard(BoardManager.NextPlayer expectedNextPlayer, Position expectedPlayer1Pos, Position expectedPlayer2Pos){
+        assertAll(() -> assertEquals(expectedNextPlayer, testGame.getNextPlayer()),
                   () -> assertEquals(expectedPlayer1Pos, testGame.getPlayerPositions()[0]),
                   () -> assertEquals(expectedPlayer2Pos, testGame.getPlayerPositions()[1])
         );
@@ -60,7 +60,7 @@ class BoardManagerTest {
 
     @Test
     void checkIfGameIsOver() {
-        /*testGame.movePiece(0, 1);
+        testGame.movePiece(0, 1);
         testGame.movePiece(4, 7);
         testGame.movePiece(1, 1);
         testGame.movePiece(3, 7);
@@ -71,10 +71,11 @@ class BoardManagerTest {
         testGame.movePiece(3, 0);
         testGame.movePiece(0, 7);
         testGame.movePiece(2, 0);
+        testGame.checkIfGameIsOver();
         assertEquals(GameState.RUNNING, testGame.getGameState());
         testGame.movePiece(0, 6);
         testGame.movePiece(1, 0);
-        testGame.movePiece(0, 5);
-        assertEquals(GameState.PLAYER2_WON, testGame.getGameState());*/
+        testGame.checkIfGameIsOver();
+        assertEquals(GameState.PLAYER2_WON, testGame.getGameState());
     }
 }
