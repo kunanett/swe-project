@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 
 <AnchorPane id="pane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
-      <GridPane id="board" fx:id="board" layoutX="37.0" layoutY="118.0" prefHeight="450.0" prefWidth="600.0" stylesheets="@../css/board.css">
+      <GridPane id="board" fx:id="board" layoutX="37.0" layoutY="118.0" prefHeight="438.0" prefWidth="584.0" stylesheets="@../css/board.css">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,26 +34,42 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
-      <VBox alignment="TOP_CENTER" layoutX="664.0" layoutY="170.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" layoutX="650.0" layoutY="170.0" spacing="30.0">
          <children>
             <Button id="generic" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#showRules" prefHeight="50.0" prefWidth="100.0" stylesheets="@../css/button.css" text="Rules" />
             <Button id="generic" fx:id="giveUpButton" mnemonicParsing="false" onMouseClicked="#giveUpPressed" prefHeight="50.0" prefWidth="100.0" stylesheets="@../css/button.css" text="Give up" />
          </children>
       </VBox>
-      <HBox layoutX="115.0" layoutY="33.0" prefHeight="64.0" spacing="30.0">
+      <HBox alignment="CENTER" layoutX="55.0" layoutY="14.0" prefHeight="99.0" prefWidth="549.0" spacing="30.0">
          <children>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/pink_icon.png" />
                </image>
             </ImageView>
-            <Label id="player1" fx:id="player1" prefHeight="57.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player1" />
+            <VBox alignment="CENTER" pickOnBounds="false" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label id="player1" fx:id="player1" prefHeight="45.0" prefWidth="100.0" stylesheets="@../css/label.css" text="Player1" />
+                  <Label fx:id="player1Points" stylesheets="@../css/label.css" text="points" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+               </children>
+            </VBox>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/blue_icon.png" />
                </image>
             </ImageView>
-            <Label id="player2" fx:id="player2" prefHeight="57.0" prefWidth="127.0" stylesheets="@../css/label.css" text="Player2" />
+            <VBox alignment="CENTER" pickOnBounds="false" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label id="player2" fx:id="player2" prefHeight="45.0" prefWidth="100.0" stylesheets="@../css/label.css" text="Player2" />
+                  <Label fx:id="player2Points" stylesheets="@../css/label.css" text="points" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

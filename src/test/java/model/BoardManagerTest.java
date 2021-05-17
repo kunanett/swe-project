@@ -78,4 +78,15 @@ class BoardManagerTest {
         testGame.checkIfGameIsOver();
         assertEquals(GameState.PLAYER2_WON, testGame.getGameState());
     }
+
+    @Test
+    void giveUp(){
+        testGame.giveUp();
+        assertEquals(GameState.PLAYER2_WON, testGame.getGameState());
+
+        testGame = new BoardManager();
+        testGame.movePiece(1, 1);
+        testGame.giveUp();
+        assertEquals(GameState.PLAYER1_WON, testGame.getGameState());
+    }
 }

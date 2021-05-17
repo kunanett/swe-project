@@ -14,7 +14,13 @@ public class BoardManager {
      * Enum class for representing which player is next to move.
      */
     public enum NextPlayer {
+        /**
+         * Represents that player1 is next.
+         */
         PLAYER1,
+        /**
+         * Represents that player2 is next.
+         */
         PLAYER2;
 
         private NextPlayer next() {
@@ -52,18 +58,22 @@ public class BoardManager {
         gameState = GameState.RUNNING;
     }
 
+    /**
+     * {@return the current {@code Position} of each player}
+     */
     public Position[] getPlayerPositions() {
         return playerPositions;
     }
 
+    /**
+     * {@return the next player to move}
+     */
     public NextPlayer getNextPlayer() {
         return nextPlayer;
     }
 
     /**
-     * Returns the current state of the game.
-     *
-     * @return a {@code GameState}
+     * {@return the current {@code GameState}}
      */
     public GameState getGameState() {
         return this.gameState;

@@ -40,20 +40,4 @@ class PositionTest {
         assertThrows(IllegalArgumentException.class, () -> new Position(0, 9));
 
     }
-
-    @Test
-    void testEquals(){
-        assertTrue(position.equals(position));
-        assertTrue(position.equals(new Position(position.row(), position.col())));
-        assertFalse(position.equals(new Position(5, 7)));
-        assertFalse(position.equals("this is a string"));
-        assertFalse(position.equals(null));
-    }
-
-
-    @Test
-    void testHashCode() {
-        assertEquals(position.hashCode(), position.hashCode());
-        assertEquals(position.hashCode(), new Position(position.row(), position.col()).hashCode());
-    }
 }

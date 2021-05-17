@@ -10,9 +10,4 @@
     -fx-padding: 0.3em;
     -fx-border-width: 0.1em;
     -fx-border-color: #5F6366;
-    -fx-background-color: #FAF9F6;
-}
-
-#field:hover{
-    -fx-background-color: #F2F2F2;
 }

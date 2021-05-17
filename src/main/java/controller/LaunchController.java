@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.BoardManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,7 +81,7 @@ public class LaunchController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
         Parent root = fxmlLoader.load();
         if (filename.equals("/fxml/game.fxml")){
-            fxmlLoader.<GameController>getController().setPlayerNames(player1.getText(), player2.getText());
+            fxmlLoader.<GameController>getController().setPlayers(player1.getText(), player2.getText());
         }
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

@@ -1,6 +1,9 @@
 package controller;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import model.BoardManager;
 import model.Field;
 import model.GameState;
@@ -11,43 +14,52 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import results.RankingsManager;
 
 import java.io.IOException;
 
 public class GameController {
 
     @FXML
-    public javafx.scene.control.Label player1;
+    public Label player1;
 
     @FXML
     public Label player2;
 
     @FXML
-    GridPane board;
+    public Label player1Points;
 
-    private BoardManager game;
+    @FXML
+    public Label player2Points;
+
+    @FXML
+    GridPane board;
 
     @FXML
     Button giveUpButton;
+
+    private BackgroundImage blue, pink, transparent, unavailable;
+
+    private BoardManager game;
 
     private final Logger logger = LoggerFactory.getLogger(GameController.class);
 
     @FXML
     public void initialize() {
         logger.info("Initializing board on GUI");
+
         game = new BoardManager();
+        createBoard();
+        setBackgroundImages();
+        refreshBoard();
+    }
 
-        this.player1.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        this.player2.setPrefWidth(Region.USE_COMPUTED_SIZE);
-
+    private void createBoard(){
         for (int i = 0; i < board.getRowCount(); i++) {
             for (int j = 0; j < board.getColumnCount(); j++) {
                 var field = new StackPane();
@@ -56,12 +68,26 @@ public class GameController {
                 board.add(field, j, i);
             }
         }
-        refreshBoard();
     }
 
-    public void setPlayerNames(String player1, String player2) {
+    private void setBackgroundImages(){
+        unavailable = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/unavailable.png")), null, null, null, null);
+        pink = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/pink.png")), null, null, null, null);
+        blue = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/blue.png")), null, null, null, null);
+        transparent = new BackgroundImage(new Image(getClass().getResourceAsStream("/img/transparent.png")), null, null, null, null);
+    }
+
+    public void setPlayers(String player1, String player2) {
+        String p1 = String.valueOf(RankingsManager.getInstance().getPlayersPoints(player1));
+        String p2 = String.valueOf(RankingsManager.getInstance().getPlayersPoints(player2));
+        this.player1.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        this.player2.setPrefWidth(Region.USE_COMPUTED_SIZE);
         this.player1.setText(player1);
         this.player2.setText(player2);
+        this.player1Points.setText(String.format("points:%s",p1));
+        this.player2Points.setText(String.format("points:%s",p2));
+
+        logger.info("Player information set on game UI");
     }
 
     @FXML
@@ -77,7 +103,7 @@ public class GameController {
 
     @FXML
     public void giveUpPressed(MouseEvent mouseEvent) {
-        logger.info("Clicked on give up button");
+        logger.info("Click on give up button");
         game.giveUp();
         gameOver(mouseEvent, game.getGameState());
     }
@@ -113,6 +139,7 @@ public class GameController {
         buttonBar.getButtons().forEach(button -> button.setStyle(buttonStyle));
         delay();
         alert.showAndWait();
+        logger.debug("Showing game over alert");
     }
 
     private void gameOver(MouseEvent event, GameState state) {
@@ -144,28 +171,20 @@ public class GameController {
 
     private void refreshBoard() {
         logger.debug("Refreshing the board on the UI");
-        logger.debug(game.toString());
 
         Field[][] boardRepresentation = game.getBoard();
         ObservableList<Node> fields = board.getChildren();
         for (var field : fields) {
             int row = GridPane.getRowIndex(field);
             int col = GridPane.getColumnIndex(field);
-            String backgroundColor = switch (boardRepresentation[row][col]) {
-                case UNAVAILABLE -> """
-                        -fx-background-color: #5F6366;
-                        """;
-                case PLAYER1 -> """
-                        -fx-background-image: url("/img/pink.png");
-                          """;
-                case PLAYER2 -> """
-                        -fx-background-image: url("/img/blue.png");
-                        """;
-                case EMPTY -> """
-                        -fx-background-color: transparent;
-                        """;
+            BackgroundImage background = switch (boardRepresentation[row][col]) {
+                case UNAVAILABLE -> unavailable;
+                case PLAYER1 -> pink;
+                case PLAYER2 -> blue;
+                case EMPTY -> transparent;
             };
-            field.setStyle(backgroundColor);
+
+            ((StackPane) field).backgroundProperty().setValue(new Background(background));
         }
 
         if (game.getNextPlayer() == BoardManager.NextPlayer.PLAYER1) {

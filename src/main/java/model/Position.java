@@ -6,6 +6,9 @@ import java.util.Objects;
 
 /**
  * Record class for wrapping the coordinates of a 2D position.
+ *
+ * @param row the row-index of the position, must be between 0 and 5
+ * @param col the column-index of the position, must be between 0 and 7
  */
 public record Position(int row, int col) {
     /**
@@ -52,48 +55,5 @@ public record Position(int row, int col) {
             }
         }
         return result;
-    }
-
-    /**
-     * Returns the row-index of a position.
-     *
-     * @return the row-index of this {@code Position} object
-     */
-    @Override
-    public int row() {
-        return this.row;
-    }
-
-    /**
-     * Returns the column-index of a position.
-     *
-     * @return the column-index of this {@code Position} object
-     */
-    @Override
-    public int col() {
-        return this.col;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Position position = (Position) o;
-        return row == position.row && col == position.col;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(row, col);
-    }
-
-    /**
-     * Returns the {@code String} representation of a {@code Position} object.
-     *
-     * @return the {@code String} representation
-     */
-    @Override
-    public String toString() {
-        return ("Position(" + row + ", " + col + ")");
     }
 }

@@ -30,6 +30,9 @@ public interface PlayerDao {
     )
     void createTable();
 
+    /**
+     * Maps to an {@code Sql Update} that drops the rankings database table.
+     */
     @SqlUpdate("""
             drop table rankings
 """)
